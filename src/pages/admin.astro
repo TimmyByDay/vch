@@ -6,19 +6,17 @@
 		<meta name="robots" content="noindex" />
 		<link href="/admin/config.yml" type="text/yaml" rel="cms-config-url" />
 		<title>Content Manager</title>
-		<script>
-			const isDev = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
-			if (isDev) {
-				document.querySelector('link[rel="cms-config-url"]').href = "/admin/config.dev.yml";
-			}
-		</script>
 	</head>
 	<body>
+		<!-- Dashboard script-->
 		<script is:inline src="https://unpkg.com/decap-cms@^3.8.3/dist/decap-cms.js"></script>
+		<!-- CSS in preview panel -->
 		<script>
 			// @ts-expect-error CMS is defined globally
 			CMS.registerPreviewStyle("/preview.css");
 		</script>
+
+		<!-- Decap CMS customizations for image handling -->
 		<script src="../decap-utils/decap-customizations.js"></script>
 	</body>
 </html>
