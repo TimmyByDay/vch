@@ -5,7 +5,10 @@ const drinksCollection = defineCollection({
   schema: ({ image }) =>
     z.object({
       name: z.string(),
-      category: z.enum(["coffee", "specialty", "tea", "other"]),
+      category: z.enum([
+        "coffee", "specialty-coffee", "tea", "hot-chocolate",
+        "cold-drinks", "smoothies", "soft-drinks", "other",
+      ]),
       description: z.string(),
       price: z.string().optional(),
       image: image().optional(),
@@ -18,7 +21,10 @@ const foodCollection = defineCollection({
   schema: ({ image }) =>
     z.object({
       name: z.string(),
-      category: z.enum(["panini", "baguette", "jacket-potato", "other"]),
+      category: z.enum([
+        "panini", "baguette", "jacket-potato", "toasties",
+        "sandwiches", "wraps", "soups", "breakfast", "sides", "other",
+      ]),
       description: z.string(),
       price: z.string().optional(),
       image: image().optional(),

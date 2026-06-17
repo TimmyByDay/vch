@@ -6,19 +6,15 @@ const drinks = await getCollection("drinks");
 const food = await getCollection("food");
 const cakes = await getCollection("cakes");
 
-const drinkCategories: Array<{ label: string; key: string }> = [
-  { label: "Coffee", key: "coffee" },
-  { label: "Specialty Drinks", key: "specialty" },
-  { label: "Tea", key: "tea" },
-  { label: "Other", key: "other" },
-];
+const drinkCategories = [...new Set(drinks.map((entry) => entry.data.category))];
+const foodCategories = [...new Set(food.map((entry) => entry.data.category))];
 
-const foodCategories: Array<{ label: string; key: string }> = [
-  { label: "Panini", key: "panini" },
-  { label: "Baguette", key: "baguette" },
-  { label: "Jacket Potatoes", key: "jacket-potato" },
-  { label: "Other", key: "other" },
-];
+function formatCategory(cat: string) {
+  return cat
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
 ---
 
 <PageLayout>
@@ -28,16 +24,18 @@ const foodCategories: Array<{ label: string; key: string }> = [
     <section class="mb-10">
       <h2 class="text-2xl font-semibold mb-4">Drinks</h2>
       {drinkCategories.map((cat) => {
-        const items = drinks.filter((d) => d.data.category === cat.key);
+        const items = drinks.filter((entry) => entry.data.category === cat);
         if (items.length === 0) return null;
         return (
           <div class="mb-6">
-            <h3 class="text-lg font-medium text-gray-600 mb-2">{cat.label}</h3>
+            <h3 class="text-lg font-medium text-gray-600 mb-2">
+              {formatCategory(cat)}
+            </h3>
             <ul class="space-y-2">
-              {items.map((item) => (
+              {items.map((entry) => (
                 <li class="flex justify-between border-b border-gray-200 pb-1">
-                  <span>{item.data.name}</span>
-                  <span class="text-gray-500">{item.data.price}</span>
+                  <span>{entry.data.name}</span>
+                  <span class="text-gray-500">{entry.data.price}</span>
                 </li>
               ))}
             </ul>
@@ -49,16 +47,18 @@ const foodCategories: Array<{ label: string; key: string }> = [
     <section class="mb-10">
       <h2 class="text-2xl font-semibold mb-4">Food</h2>
       {foodCategories.map((cat) => {
-        const items = food.filter((f) => f.data.category === cat.key);
+        const items = food.filter((entry) => entry.data.category === cat);
         if (items.length === 0) return null;
         return (
           <div class="mb-6">
-            <h3 class="text-lg font-medium text-gray-600 mb-2">{cat.label}</h3>
+            <h3 class="text-lg font-medium text-gray-600 mb-2">
+              {formatCategory(cat)}
+            </h3>
             <ul class="space-y-2">
-              {items.map((item) => (
+              {items.map((entry) => (
                 <li class="flex justify-between border-b border-gray-200 pb-1">
-                  <span>{item.data.name}</span>
-                  <span class="text-gray-500">{item.data.price}</span>
+                  <span>{entry.data.name}</span>
+                  <span class="text-gray-500">{entry.data.price}</span>
                 </li>
               ))}
             </ul>
@@ -70,10 +70,10 @@ const foodCategories: Array<{ label: string; key: string }> = [
     <section class="mb-10">
       <h2 class="text-2xl font-semibold mb-4">Cakes & Bakes</h2>
       <ul class="space-y-2">
-        {cakes.map((item) => (
+        {cakes.map((entry) => (
           <li class="flex justify-between border-b border-gray-200 pb-1">
-            <span>{item.data.name}</span>
-            <span class="text-gray-500">{item.data.price}</span>
+            <span>{entry.data.name}</span>
+            <span class="text-gray-500">{entry.data.price}</span>
           </li>
         ))}
       </ul>
