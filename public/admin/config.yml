@@ -14,6 +14,8 @@ collections:
     label: "Drinks"
     folder: "src/content/drinks"
     create: true
+    extension: json
+    format: json
     fields:
       - { label: "Name", name: "name", widget: "string" }
       - {
@@ -31,6 +33,8 @@ collections:
     label: "Food"
     folder: "src/content/food"
     create: true
+    extension: json
+    format: json
     fields:
       - { label: "Name", name: "name", widget: "string" }
       - {
@@ -48,6 +52,8 @@ collections:
     label: "Cakes"
     folder: "src/content/cakes"
     create: true
+    extension: json
+    format: json
     fields:
       - { label: "Name", name: "name", widget: "string" }
       - { label: "Description", name: "description", widget: "text" }
@@ -80,12 +86,8 @@ collections:
       - { label: "Phone", name: "phone", widget: "string" }
       - { label: "Email", name: "email", widget: "string", required: false }
       - { label: "Hours", name: "hours", widget: "string" }
-      - {
-          label: "Facebook URL",
-          name: "facebookUrl",
-          widget: "string",
-          required: false,
-        }
+      - { label: "Facebook URL", name: "facebookUrl", widget: "string", required: false }
+      - { label: "Instagram URL", name: "instaUrl", widget: "string", required: false }
       - { label: "Image", name: "image", widget: "image", required: false }
       - { label: "Body", name: "body", widget: "markdown" }
 
@@ -93,6 +95,8 @@ collections:
     label: "Gallery"
     folder: "src/content/gallery"
     create: true
+    extension: json
+    format: json
     fields:
       - { label: "Image", name: "image", widget: "image" }
       - { label: "Caption", name: "caption", widget: "string", required: false }
