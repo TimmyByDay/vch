@@ -61,28 +61,29 @@
 <svelte:body class:overflow-hidden={open} />
 
 <header class="sticky top-0 z-50 bg-neutral-900 text-white h-16">
-  <div class="max-w-5xl mx-auto px-4 h-full flex items-center relative">
-    <a href="/" class="text-lg font-bold tracking-tight">
+  <div class="max-w-5xl mx-auto px-4 h-full flex items-center">
+    <a href="/" class="text-lg font-bold font-serif tracking-tight">
       Vons Coffee House
     </a>
 
-    <nav class="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
-      {#each links as { href, label }}
-        <a
-          href={href}
-          class={cleanPath === href
-            ? "border-b-2 border-accent pb-1"
-            : ""}
-        >
-          {label}
-        </a>
-      {/each}
-    </nav>
+    <div class="flex items-center gap-6 ml-auto">
+      <nav class="hidden md:flex items-center gap-6">
+        {#each links as { href, label }}
+          <a
+            href={href}
+            class={"font-serif" + (cleanPath === href
+              ? " border-b-2 border-accent pb-1"
+              : "")}
+          >
+            {label}
+          </a>
+        {/each}
+      </nav>
 
-    <div class="flex items-center gap-2 ml-auto" data-order-dropdown>
+      <div class="flex items-center gap-2" data-order-dropdown>
       <div class="hidden md:relative md:block">
         <button
-          class="bg-primary hover:bg-accent/80 text-white px-4 py-1.5 rounded-lg text-sm font-medium transition-colors"
+          class="bg-primary hover:bg-primary/80 cursor-pointer text-white px-4 py-1.5 rounded-lg text-sm font-medium transition-colors"
           on:click={() => orderOpen = !orderOpen}
           aria-haspopup="true"
           aria-expanded={orderOpen}
@@ -91,24 +92,15 @@
         </button>
 
         {#if orderOpen}
-          <div class="absolute right-0 top-full mt-2 w-56 bg-white rounded-xl shadow-xl z-50">
-            <button
-              class="absolute top-2 right-2 p-1 text-gray-400 hover:text-gray-600 transition-colors"
-              on:click={() => orderOpen = false}
-              aria-label="Close"
-            >
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-            <div class="pt-3 pb-1">
+          <div class="absolute right-0 top-full mt-2 w-56 bg-neutral-50 rounded-xl shadow-xl z-50">
+            <div class="pt-2 pb-3">
             {#each deliveryLinks as link, i}
               <a
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 on:click={() => orderOpen = false}
-                class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-800 hover:bg-gray-50 transition-colors"
+                class="flex items-center gap-3 px-4 py-2.5 mx-2 rounded-lg text-sm text-neutral-900 hover:bg-neutral-100 transition-colors"
               >
                 <span class="w-5 h-5 flex-shrink-0 flex items-center justify-center icon-svg" style="color: {link.color}">
                   {@html icons[link.name]}
@@ -116,7 +108,7 @@
                 <span>{link.name}</span>
               </a>
               {#if i < deliveryLinks.length - 1}
-                <div class="mx-4 border-t border-gray-100"></div>
+                <div class="mx-4 border-t border-neutral-100"></div>
               {/if}
             {/each}
             </div>
@@ -155,7 +147,7 @@
       <a
         href={href}
         on:click={() => open = false}
-        class={"text-2xl font-medium text-white " + (cleanPath === href
+        class={"text-2xl font-medium font-serif text-white " + (cleanPath === href
           ? "border-l-4 border-accent pl-3"
           : "")}
       >
