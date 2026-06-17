@@ -1,0 +1,82 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from "../../layouts/PageLayout.astro";
+
+const drinks = await getCollection("drinks");
+const food = await getCollection("food");
+const cakes = await getCollection("cakes");
+
+const drinkCategories: Array<{ label: string; key: string }> = [
+  { label: "Coffee", key: "coffee" },
+  { label: "Specialty Drinks", key: "specialty" },
+  { label: "Tea", key: "tea" },
+  { label: "Other", key: "other" },
+];
+
+const foodCategories: Array<{ label: string; key: string }> = [
+  { label: "Panini", key: "panini" },
+  { label: "Baguette", key: "baguette" },
+  { label: "Jacket Potatoes", key: "jacket-potato" },
+  { label: "Other", key: "other" },
+];
+---
+
+<PageLayout>
+  <main class="max-w-3xl mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-8">Menu</h1>
+
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold mb-4">Drinks</h2>
+      {drinkCategories.map((cat) => {
+        const items = drinks.filter((d) => d.data.category === cat.key);
+        if (items.length === 0) return null;
+        return (
+          <div class="mb-6">
+            <h3 class="text-lg font-medium text-gray-600 mb-2">{cat.label}</h3>
+            <ul class="space-y-2">
+              {items.map((item) => (
+                <li class="flex justify-between border-b border-gray-200 pb-1">
+                  <span>{item.data.name}</span>
+                  <span class="text-gray-500">{item.data.price}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
+      })}
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold mb-4">Food</h2>
+      {foodCategories.map((cat) => {
+        const items = food.filter((f) => f.data.category === cat.key);
+        if (items.length === 0) return null;
+        return (
+          <div class="mb-6">
+            <h3 class="text-lg font-medium text-gray-600 mb-2">{cat.label}</h3>
+            <ul class="space-y-2">
+              {items.map((item) => (
+                <li class="flex justify-between border-b border-gray-200 pb-1">
+                  <span>{item.data.name}</span>
+                  <span class="text-gray-500">{item.data.price}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
+      })}
+    </section>
+
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold mb-4">Cakes & Bakes</h2>
+      <ul class="space-y-2">
+        {cakes.map((item) => (
+          <li class="flex justify-between border-b border-gray-200 pb-1">
+            <span>{item.data.name}</span>
+            <span class="text-gray-500">{item.data.price}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </main>
+</PageLayout>

@@ -1,0 +1,55 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from "../../layouts/PageLayout.astro";
+
+const aboutEntries = await getCollection("business");
+const entry = aboutEntries[0];
+const { Content } = entry ? await entry.render() : { Content: undefined };
+---
+
+<PageLayout>
+  <main class="max-w-3xl mx-auto p-6">
+    {entry ? (
+      <>
+        <h1 class="text-3xl font-bold mb-6">{entry.data.title}</h1>
+        <p class="text-lg text-gray-600 mb-6">{entry.data.description}</p>
+
+        <div class="space-y-3 mb-8">
+          <div>
+            <span class="font-semibold">Address:</span> {entry.data.address}
+          </div>
+          <div>
+            <span class="font-semibold">Phone:</span> {entry.data.phone}
+          </div>
+          {entry.data.email && (
+            <div>
+              <span class="font-semibold">Email:</span> {entry.data.email}
+            </div>
+          )}
+          <div>
+            <span class="font-semibold">Hours:</span> {entry.data.hours}
+          </div>
+          {entry.data.facebookUrl && (
+            <div>
+              <a
+                href={entry.data.facebookUrl}
+                class="text-blue-600 underline"
+                target="_blank"
+              >
+                Find us on Facebook
+              </a>
+            </div>
+          )}
+        </div>
+
+        {Content && (
+          <div class="prose max-w-none">
+            <Content />
+          </div>
+        )}
+      </>
+    ) : (
+      <p class="text-gray-500">About page content coming soon.</p>
+    )}
+  </main>
+</PageLayout>
