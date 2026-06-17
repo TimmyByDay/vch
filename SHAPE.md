@@ -59,10 +59,10 @@ We have an admin panel (Decap CMS) and basic pages, but the site isn't productio
 ## Tasks
 
 ### Day 1–2: Layout & Navigation
-- [ ] Create `Header.astro` — nav links, responsive (mobile hamburger if time)
-- [ ] Create `Footer.astro` — address, hours, socials from `getCollection("business")`
-- [ ] Update `PageLayout.astro` — pull in Header/Footer, dynamic `<title>` via `Astro.props`
-- [ ] Update all existing pages to pass a title prop
+- [x] Create `Header.svelte` — nav links, responsive (mobile hamburger if time)
+- [x] Create `Footer.svelte` — expanded: sitemap, contact, delivery, socials, legal links
+- [x] Update `PageLayout.astro` — pull in Header/Footer, dynamic `<title>` via `Astro.props`
+- [x] Update all existing pages to pass a title prop
 
 ### Day 3: Homepage
 - [ ] Hero section with tagline and CTA to /menu
@@ -82,4 +82,6 @@ We have an admin panel (Decap CMS) and basic pages, but the site isn't productio
 - [ ] Configure deploy hook — pushes to `main` auto-trigger rebuild
 - [ ] Register production GitHub OAuth app for Decap CMS
 - [ ] Update site title, favicon, meta description
+- [x] Create `/terms` — Terms of Service page
+- [x] Create `/privacy` — Privacy Policy page
 - [ ] Seed remaining menu content via admin

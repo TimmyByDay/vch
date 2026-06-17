@@ -1,5 +1,7 @@
 ---
+import { getCollection } from "astro:content";
 import Header from "../components/Header.svelte";
+import Footer from "../components/Footer.svelte";
 import "../assets/styles/global.css";
 
 export interface Props {
@@ -7,6 +9,17 @@ export interface Props {
 }
 
 const { title = "Vons Coffee House" } = Astro.props;
+
+const businessEntries = await getCollection("business");
+function find(name: string) {
+  return businessEntries.find((e) => e.data.name === name)?.data.value;
+}
+const address = find("Address");
+const phone = find("Phone");
+const email = find("Email");
+const hours = find("Hours");
+const instagram = find("Instagram");
+const facebook = find("Facebook");
 ---
 
 <html lang="en">
@@ -20,5 +33,6 @@ const { title = "Vons Coffee House" } = Astro.props;
   <body class="bg-neutral-900 text-neutral-50">
     <Header currentPath={Astro.url.pathname} client:load />
     <slot />
+    <Footer {address} {phone} {email} {hours} {instagram} {facebook} />
   </body>
 </html>
