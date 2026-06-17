@@ -4,7 +4,6 @@ import PageLayout from "../../layouts/PageLayout.astro";
 
 const aboutEntries = await getCollection("business");
 const entry = aboutEntries[0];
-const { Content } = entry ? await entry.render() : { Content: undefined };
 ---
 
 <PageLayout>
@@ -40,11 +39,22 @@ const { Content } = entry ? await entry.render() : { Content: undefined };
               </a>
             </div>
           )}
+          {entry.data.instaUrl && (
+            <div>
+              <a
+                href={entry.data.instaUrl}
+                class="text-blue-600 underline"
+                target="_blank"
+              >
+                Check out our Instagram
+              </a>
+            </div>
+          )}
         </div>
 
-        {Content && (
+        {entry.data.aboutText && (
           <div class="prose max-w-none">
-            <Content />
+            <p>{entry.data.aboutText}</p>
           </div>
         )}
       </>

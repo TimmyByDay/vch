@@ -51,16 +51,18 @@ const specialsCollection = defineCollection({
 });
 
 const businessCollection = defineCollection({
-  type: "content",
+  type: "data",
   schema: ({ image }) =>
     z.object({
       title: z.string(),
       description: z.string(),
+      aboutText: z.string(),
       address: z.string(),
       phone: z.string(),
       email: z.string().optional(),
       hours: z.string(),
       facebookUrl: z.string().optional(),
+      instaUrl: z.string().optional(),
       image: image().optional(),
     }),
 });
