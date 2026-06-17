@@ -64,20 +64,10 @@ const businessCollection = defineCollection({
   }),
 });
 
-const galleryCollection = defineCollection({
-  type: "data",
-  schema: ({ image }) =>
-    z.object({
-      image: image(),
-      caption: z.string().optional(),
-    }),
-});
-
 export const collections = {
   drinks: drinksCollection,
   food: foodCollection,
   cakes: cakesCollection,
   specials: specialsCollection,
   business: businessCollection,
-  gallery: galleryCollection,
 };

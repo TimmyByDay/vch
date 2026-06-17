@@ -17,7 +17,7 @@ function formatCategory(cat: string) {
 }
 ---
 
-<PageLayout>
+<PageLayout title="Menu">
   <main class="max-w-3xl mx-auto p-6">
     <h1 class="text-3xl font-bold mb-8">Menu</h1>
 
@@ -28,14 +28,14 @@ function formatCategory(cat: string) {
         if (items.length === 0) return null;
         return (
           <div class="mb-6">
-            <h3 class="text-lg font-medium text-gray-600 mb-2">
+            <h3 class="text-lg font-medium text-neutral-100 mb-2">
               {formatCategory(cat)}
             </h3>
             <ul class="space-y-2">
               {items.map((entry) => (
-                <li class="flex justify-between border-b border-gray-200 pb-1">
+                <li class="flex justify-between border-b border-neutral-800 pb-1">
                   <span>{entry.data.name}</span>
-                  <span class="text-gray-500">{entry.data.price}</span>
+                  <span class="text-neutral-200">{entry.data.price}</span>
                 </li>
               ))}
             </ul>
@@ -51,14 +51,14 @@ function formatCategory(cat: string) {
         if (items.length === 0) return null;
         return (
           <div class="mb-6">
-            <h3 class="text-lg font-medium text-gray-600 mb-2">
+            <h3 class="text-lg font-medium text-neutral-100 mb-2">
               {formatCategory(cat)}
             </h3>
             <ul class="space-y-2">
               {items.map((entry) => (
-                <li class="flex justify-between border-b border-gray-200 pb-1">
+                <li class="flex justify-between border-b border-neutral-800 pb-1">
                   <span>{entry.data.name}</span>
-                  <span class="text-gray-500">{entry.data.price}</span>
+                  <span class="text-neutral-200">{entry.data.price}</span>
                 </li>
               ))}
             </ul>
@@ -71,9 +71,9 @@ function formatCategory(cat: string) {
       <h2 class="text-2xl font-semibold mb-4">Cakes & Bakes</h2>
       <ul class="space-y-2">
         {cakes.map((entry) => (
-          <li class="flex justify-between border-b border-gray-200 pb-1">
+          <li class="flex justify-between border-b border-neutral-800 pb-1">
             <span>{entry.data.name}</span>
-            <span class="text-gray-500">{entry.data.price}</span>
+            <span class="text-neutral-200">{entry.data.price}</span>
           </li>
         ))}
       </ul>

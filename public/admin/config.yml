@@ -35,7 +35,7 @@ collections:
             ],
         }
       - { label: "Description", name: "description", widget: "text" }
-      - { label: "Price", name: "price", widget: "string", required: false }
+      - { label: "Price", name: "price", widget: "string" }
       - { label: "Image", name: "image", widget: "image", required: false }
       - { label: "Featured", name: "featured", widget: "boolean", default: false }
 
@@ -66,7 +66,7 @@ collections:
             ],
         }
       - { label: "Description", name: "description", widget: "text" }
-      - { label: "Price", name: "price", widget: "string", required: false }
+      - { label: "Price", name: "price", widget: "string" }
       - { label: "Image", name: "image", widget: "image", required: false }
       - { label: "Featured", name: "featured", widget: "boolean", default: false }
 
@@ -79,7 +79,7 @@ collections:
     fields:
       - { label: "Name", name: "name", widget: "string" }
       - { label: "Description", name: "description", widget: "text" }
-      - { label: "Price", name: "price", widget: "string", required: false }
+      - { label: "Price", name: "price", widget: "string" }
       - { label: "Image", name: "image", widget: "image", required: false }
       - { label: "Featured", name: "featured", widget: "boolean", default: false }
 
@@ -105,12 +105,3 @@ collections:
       - { label: "Name", name: "name", widget: "string" }
       - { label: "Value", name: "value", widget: "string" }
 
-  - name: "gallery"
-    label: "Gallery"
-    folder: "src/content/gallery"
-    create: true
-    extension: json
-    format: json
-    fields:
-      - { label: "Image", name: "image", widget: "image" }
-      - { label: "Caption", name: "caption", widget: "string", required: false }

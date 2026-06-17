@@ -1,0 +1,105 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from "../../layouts/PageLayout.astro";
+
+const entries = await getCollection("business");
+
+function find(name: string) {
+  return entries.find((e) => e.data.name === name)?.data.value;
+}
+
+const address = find("Address");
+const phone = find("Phone");
+const email = find("Email");
+const hours = find("Hours");
+const instagram = find("Instagram");
+const facebook = find("Facebook");
+
+const mapSrc = address
+  ? `https://maps.google.com/maps?q=${encodeURIComponent(address)}&output=embed`
+  : null;
+---
+
+<PageLayout title="Contact">
+  <main class="max-w-3xl mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-8">Contact</h1>
+
+    <div class="grid gap-8 md:grid-cols-2">
+      <div class="space-y-6">
+        {address && (
+          <div>
+            <h2 class="text-lg font-semibold mb-1">Address</h2>
+            <p class="text-neutral-100">{address}</p>
+          </div>
+        )}
+
+        {phone && (
+          <div>
+            <h2 class="text-lg font-semibold mb-1">Phone</h2>
+            <a href={`tel:${phone.replace(/\s/g, "")}`} class="text-neutral-50 underline">
+              {phone}
+            </a>
+          </div>
+        )}
+
+        {email && (
+          <div>
+            <h2 class="text-lg font-semibold mb-1">Email</h2>
+            <a href={`mailto:${email}`} class="text-neutral-50 underline">
+              {email}
+            </a>
+          </div>
+        )}
+
+        {hours && (
+          <div>
+            <h2 class="text-lg font-semibold mb-1">Opening Hours</h2>
+            <p class="text-neutral-100 whitespace-pre-line">{hours}</p>
+          </div>
+        )}
+
+        {(instagram || facebook) && (
+          <div>
+            <h2 class="text-lg font-semibold mb-2">Follow Us</h2>
+            <div class="flex gap-3">
+              {instagram && (
+                <a
+                  href={instagram}
+                  target="_blank"
+                  class="inline-block px-4 py-2 bg-neutral-800 text-white rounded-lg hover:bg-neutral-600 text-sm"
+                >
+                  Instagram
+                </a>
+              )}
+              {facebook && (
+                <a
+                  href={facebook}
+                  target="_blank"
+                  class="inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 text-sm"
+                >
+                  Facebook
+                </a>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {mapSrc && (
+        <div class="w-full h-80 rounded-lg overflow-hidden border border-neutral-800">
+          <iframe
+            src={mapSrc}
+            width="100%"
+            height="100%"
+            style="border:0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Map"
+          >
+          </iframe>
+        </div>
+      )}
+    </div>
+  </main>
+</PageLayout>

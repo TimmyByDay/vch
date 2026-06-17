@@ -9,14 +9,14 @@ function isUrl(value: string) {
 }
 ---
 
-<PageLayout>
+<PageLayout title="About">
   <main class="max-w-3xl mx-auto p-6">
     {entries.length > 0 ? (
       <>
         {entries
           .filter((e) => e.data.name === "About")
           .map((e) => (
-            <p class="text-lg text-gray-600 mb-6">{e.data.value}</p>
+            <p class="text-lg text-neutral-100 mb-6">{e.data.value}</p>
           ))}
 
         <div class="space-y-3 mb-8">
@@ -28,7 +28,7 @@ function isUrl(value: string) {
                 {isUrl(e.data.value) ? (
                   <a
                     href={e.data.value}
-                    class="text-blue-600 underline"
+                    class="text-neutral-50 underline"
                     target="_blank"
                   >
                     {e.data.value}
@@ -41,7 +41,7 @@ function isUrl(value: string) {
         </div>
       </>
     ) : (
-      <p class="text-gray-500">Business information coming soon.</p>
+      <p class="text-neutral-200">Business information coming soon.</p>
     )}
   </main>
 </PageLayout>
