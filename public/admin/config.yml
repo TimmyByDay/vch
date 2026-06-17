@@ -76,22 +76,12 @@ collections:
   - name: "business"
     label: "Business"
     folder: "src/content/business"
-    create: false
-    delete: false
-    slug: "business"
+    create: true
     extension: json
     format: json
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "About Text", name: "aboutText", widget: "text" }
-      - { label: "Address", name: "address", widget: "string" }
-      - { label: "Phone", name: "phone", widget: "string" }
-      - { label: "Email", name: "email", widget: "string", required: false }
-      - { label: "Hours", name: "hours", widget: "string" }
-      - { label: "Facebook URL", name: "facebookUrl", widget: "string", required: false }
-      - { label: "Instagram URL", name: "instaUrl", widget: "string", required: false }
-      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Value", name: "value", widget: "string" }
 
   - name: "gallery"
     label: "Gallery"

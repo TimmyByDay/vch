@@ -2,64 +2,46 @@
 import { getCollection } from "astro:content";
 import PageLayout from "../../layouts/PageLayout.astro";
 
-const aboutEntries = await getCollection("business");
-const entry = aboutEntries[0];
+const entries = await getCollection("business");
+
+function isUrl(value: string) {
+  return value.startsWith("http://") || value.startsWith("https://");
+}
 ---
 
 <PageLayout>
   <main class="max-w-3xl mx-auto p-6">
-    {entry ? (
+    {entries.length > 0 ? (
       <>
-        <h1 class="text-3xl font-bold mb-6">{entry.data.title}</h1>
-        <p class="text-lg text-gray-600 mb-6">{entry.data.description}</p>
+        {entries
+          .filter((e) => e.data.name === "About")
+          .map((e) => (
+            <p class="text-lg text-gray-600 mb-6">{e.data.value}</p>
+          ))}
 
         <div class="space-y-3 mb-8">
-          <div>
-            <span class="font-semibold">Address:</span> {entry.data.address}
-          </div>
-          <div>
-            <span class="font-semibold">Phone:</span> {entry.data.phone}
-          </div>
-          {entry.data.email && (
-            <div>
-              <span class="font-semibold">Email:</span> {entry.data.email}
-            </div>
-          )}
-          <div>
-            <span class="font-semibold">Hours:</span> {entry.data.hours}
-          </div>
-          {entry.data.facebookUrl && (
-            <div>
-              <a
-                href={entry.data.facebookUrl}
-                class="text-blue-600 underline"
-                target="_blank"
-              >
-                Find us on Facebook
-              </a>
-            </div>
-          )}
-          {entry.data.instaUrl && (
-            <div>
-              <a
-                href={entry.data.instaUrl}
-                class="text-blue-600 underline"
-                target="_blank"
-              >
-                Check out our Instagram
-              </a>
-            </div>
-          )}
+          {entries
+            .filter((e) => e.data.name !== "About")
+            .map((e) => (
+              <div>
+                <span class="font-semibold">{e.data.name}:</span>{" "}
+                {isUrl(e.data.value) ? (
+                  <a
+                    href={e.data.value}
+                    class="text-blue-600 underline"
+                    target="_blank"
+                  >
+                    {e.data.value}
+                  </a>
+                ) : (
+                  <span>{e.data.value}</span>
+                )}
+              </div>
+            ))}
         </div>
-
-        {entry.data.aboutText && (
-          <div class="prose max-w-none">
-            <p>{entry.data.aboutText}</p>
-          </div>
-        )}
       </>
     ) : (
-      <p class="text-gray-500">About page content coming soon.</p>
+      <p class="text-gray-500">Business information coming soon.</p>
     )}
   </main>
 </PageLayout>
