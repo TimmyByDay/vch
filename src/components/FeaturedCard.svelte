@@ -36,7 +36,17 @@
   >
     <div class="overflow-hidden min-h-0">
       <div class="pt-3 pb-1 space-y-1">
-        <h3 class="font-semibold text-neutral-900">{name}</h3>
+        <div class="flex items-start justify-between gap-2">
+          <h3 class="font-semibold text-neutral-900">{name}</h3>
+          {#if vegan}
+            <span class="inline-flex items-center gap-1 text-xs font-medium text-green-700 bg-green-100 rounded-full px-2.5 py-0.5 shrink-0">
+              <svg class="w-3 h-3" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M7.47 1.48a.75.75 0 0 1 1.06 0l.72.71a.75.75 0 0 1 0 1.06l-.72.71a.75.75 0 0 1-1.06 0l-.71-.71a.75.75 0 0 1 0-1.06l.71-.71ZM4.69 4.69a.75.75 0 0 1 1.06 0l.35.35a.75.75 0 0 1 0 1.06l-.35.35a.75.75 0 0 1-1.06 0l-.35-.35a.75.75 0 0 1 0-1.06l.35-.35Zm6.62 0a.75.75 0 0 1 0 1.06l-.35.35a.75.75 0 0 1-1.06 0l-.35-.35a.75.75 0 0 1 0-1.06l.35-.35a.75.75 0 0 1 1.06 0ZM8 5.5a.75.75 0 0 1 .75.75v1.5h1.5a.75.75 0 0 1 0 1.5h-1.5v1.5a.75.75 0 0 1-1.5 0v-1.5h-1.5a.75.75 0 0 1 0-1.5h1.5V6.25A.75.75 0 0 1 8 5.5Z"/>
+              </svg>
+              Vegan
+            </span>
+          {/if}
+        </div>
         <p class="text-sm text-neutral-600 leading-snug">{description}</p>
         <div class="flex items-center gap-3 pt-1">
           {#if price}
@@ -46,14 +56,6 @@
             {:else}
               <span class="font-bold text-accent">{price}</span>
             {/if}
-          {/if}
-          {#if vegan}
-            <span class="inline-flex items-center gap-1 text-xs font-medium text-green-700 bg-green-100 rounded-full px-2.5 py-0.5">
-              <svg class="w-3 h-3" viewBox="0 0 16 16" fill="currentColor">
-                <path d="M7.47 1.48a.75.75 0 0 1 1.06 0l.72.71a.75.75 0 0 1 0 1.06l-.72.71a.75.75 0 0 1-1.06 0l-.71-.71a.75.75 0 0 1 0-1.06l.71-.71ZM4.69 4.69a.75.75 0 0 1 1.06 0l.35.35a.75.75 0 0 1 0 1.06l-.35.35a.75.75 0 0 1-1.06 0l-.35-.35a.75.75 0 0 1 0-1.06l.35-.35Zm6.62 0a.75.75 0 0 1 0 1.06l-.35.35a.75.75 0 0 1-1.06 0l-.35-.35a.75.75 0 0 1 0-1.06l.35-.35a.75.75 0 0 1 1.06 0ZM8 5.5a.75.75 0 0 1 .75.75v1.5h1.5a.75.75 0 0 1 0 1.5h-1.5v1.5a.75.75 0 0 1-1.5 0v-1.5h-1.5a.75.75 0 0 1 0-1.5h1.5V6.25A.75.75 0 0 1 8 5.5Z"/>
-              </svg>
-              Vegan
-            </span>
           {/if}
         </div>
       </div>
