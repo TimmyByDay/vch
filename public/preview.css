@@ -1086,6 +1086,9 @@
   .flex-col {
     flex-direction: column;
   }
+  .flex-wrap {
+    flex-wrap: wrap;
+  }
   .items-center {
     align-items: center;
   }
@@ -1632,9 +1635,9 @@
       height: 290px;
     }
   }
-  .sm\:grid-cols-2 {
+  .sm\:w-\[calc\(50\%-0\.75rem\)\] {
     @media (width >= 40rem) {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      width: calc(50% - 0.75rem);
     }
   }
   .sm\:grid-rows-\[0fr\] {
@@ -1752,9 +1755,9 @@
       height: 270px;
     }
   }
-  .lg\:grid-cols-4 {
+  .lg\:w-\[calc\(25\%-1\.125rem\)\] {
     @media (width >= 64rem) {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      width: calc(25% - 1.125rem);
     }
   }
 }
