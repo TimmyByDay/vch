@@ -7,7 +7,7 @@ backend:
   auth_endpoint: oauth
 
 media_folder: src/assets/img
-public_folder: src/assets/img
+public_folder: /decap-images
 
 collections:
   - name: "drinks"
@@ -104,4 +104,21 @@ collections:
     fields:
       - { label: "Name", name: "name", widget: "string" }
       - { label: "Value", name: "value", widget: "string" }
+
+  - name: "delivery"
+    label: "Delivery Links"
+    folder: "src/content/delivery"
+    create: true
+    extension: json
+    format: json
+    fields:
+      - {
+          label: "Provider",
+          name: "provider",
+          widget: "select",
+          options: ["Deliveroo", "Uber Eats", "Just Eat"],
+        }
+      - { label: "URL", name: "url", widget: "string" }
+      - { label: "Brand Color", name: "color", widget: "string", pattern: ["^#[0-9A-Fa-f]{6}$", "Must be a hex color e.g. #00CCBC"] }
+      - { label: "Order", name: "order", widget: "number", value_type: "int", default: 0 }
 

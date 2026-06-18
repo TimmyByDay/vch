@@ -64,10 +64,21 @@ const businessCollection = defineCollection({
   }),
 });
 
+const deliveryCollection = defineCollection({
+  type: "data",
+  schema: z.object({
+    provider: z.enum(["Deliveroo", "Uber Eats", "Just Eat"]),
+    url: z.string(),
+    color: z.string(),
+    order: z.number().default(0),
+  }),
+});
+
 export const collections = {
   drinks: drinksCollection,
   food: foodCollection,
   cakes: cakesCollection,
   specials: specialsCollection,
   business: businessCollection,
+  delivery: deliveryCollection,
 };

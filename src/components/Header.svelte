@@ -1,40 +1,12 @@
 <script>
-  import { siDeliveroo, siUbereats, siJusteat } from "simple-icons";
+  import { deliveryIcons } from "../data/delivery";
+  import { headerLinks } from "../data/navigation";
 
-  const icons = {
-    Deliveroo: siDeliveroo.svg.replace("<svg", '<svg fill="currentColor"'),
-    "Uber Eats": siUbereats.svg.replace("<svg", '<svg fill="currentColor"'),
-    "Just Eat": siJusteat.svg.replace("<svg", '<svg fill="currentColor"'),
-  };
-  export let currentPath = "/";
+  let { currentPath = "/", deliveryLinks = [] } = $props();
+
   const cleanPath = currentPath.replace(/\/$/, "") || "/";
-  let open = false;
-  let orderOpen = false;
-
-  const links = [
-    { href: "/menu", label: "Menu" },
-    { href: "/specials", label: "Specials" },
-    { href: "/about", label: "About" },
-    { href: "/contact", label: "Contact" },
-  ];
-
-  const deliveryLinks = [
-    {
-      name: "Deliveroo",
-      url: "https://deliveroo.co.uk/menu/Saint%2520Austell/saint-austell/vons-coffee-house",
-      color: "#00CCBC",
-    },
-    {
-      name: "Uber Eats",
-      url: "https://www.ubereats.com/gb/store/vons-coffee-house/IqSP392jW-qI4UTCy_r45w?srsltid=AfmBOoqB2xCXfU2RBNNaI87pCPBiVwxbLejSvZ--uxy7lOSzJ36VubsG",
-      color: "#06C167",
-    },
-    {
-      name: "Just Eat",
-      url: "https://www.just-eat.co.uk/restaurants-vons-coffee-house-st-austell",
-      color: "#FE5000",
-    },
-  ];
+  let open = $state(false);
+  let orderOpen = $state(false);
 
   function handleKeydown(e) {
     if (e.key === "Escape") {
@@ -57,10 +29,10 @@
   }
 </script>
 
-<svelte:window on:keydown={handleKeydown} on:click={handleWindowClick} />
+<svelte:window onkeydown={handleKeydown} onclick={handleWindowClick} />
 <svelte:body class:overflow-hidden={open} />
 
-<header class="sticky top-0 z-50 bg-neutral-900 text-white h-16">
+<header class="sticky top-0 z-50 bg-white/70 backdrop-blur-md text-neutral-900 h-16">
   <div class="max-w-5xl mx-auto px-4 h-full flex items-center">
     <a href="/" class="text-lg font-bold font-serif tracking-tight">
       Vons Coffee House
@@ -68,7 +40,7 @@
 
     <div class="flex items-center gap-6 ml-auto">
       <nav class="hidden md:flex items-center gap-6">
-        {#each links as { href, label }}
+        {#each headerLinks as { href, label }}
           <a
             href={href}
             class={"font-serif" + (cleanPath === href
@@ -83,33 +55,30 @@
       <div class="flex items-center gap-2" data-order-dropdown>
       <div class="hidden md:relative md:block">
         <button
-          class="bg-primary hover:bg-primary/80 cursor-pointer text-white px-4 py-1.5 rounded-lg text-sm font-medium transition-colors"
-          on:click={() => orderOpen = !orderOpen}
+          class="border border-primary hover:bg-primary hover:text-neutral-50 cursor-pointer text-neutral-900 px-4 py-1.5 rounded-lg text-sm font-bold transition-colors"
+          onclick={() => orderOpen = !orderOpen}
           aria-haspopup="true"
           aria-expanded={orderOpen}
         >
-          Order Here
+          ORDER NOW
         </button>
 
         {#if orderOpen}
-          <div class="absolute right-0 top-full mt-2 w-56 bg-neutral-50 rounded-xl shadow-xl z-50">
+          <div class="absolute right-0 top-full mt-2 w-56 bg-white rounded-xl shadow-xl z-50">
             <div class="pt-2 pb-3">
             {#each deliveryLinks as link, i}
               <a
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                on:click={() => orderOpen = false}
-                class="flex items-center gap-3 px-4 py-2.5 mx-2 rounded-lg text-sm text-neutral-900 hover:bg-neutral-100 transition-colors"
+                onclick={() => orderOpen = false}
+                class="flex items-center gap-3 px-4 py-2.5 mx-2 rounded-lg text-sm text-neutral-900 hover:bg-neutral-50/30 transition-colors"
               >
                 <span class="w-5 h-5 flex-shrink-0 flex items-center justify-center icon-svg" style="color: {link.color}">
-                  {@html icons[link.name]}
+              {@html deliveryIcons[link.name]}
                 </span>
                 <span>{link.name}</span>
               </a>
-              {#if i < deliveryLinks.length - 1}
-                <div class="mx-4 border-t border-neutral-100"></div>
-              {/if}
             {/each}
             </div>
           </div>
@@ -120,7 +89,7 @@
         class="md:hidden p-2"
         aria-label="Toggle navigation"
         aria-expanded={open}
-        on:click={() => open = !open}
+        onclick={() => open = !open}
       >
         {#if open}
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -139,15 +108,15 @@
 <div
   class="md:hidden fixed inset-0 z-40 transition-transform duration-300"
   class:translate-x-full={!open}
-  on:click={handleBackdrop}
+  onclick={handleBackdrop}
   role="presentation"
 >
-  <nav class="w-full h-full bg-neutral-900/95 backdrop-blur-sm flex flex-col items-center justify-center gap-8">
-    {#each links as { href, label }}
+  <nav class="w-full h-full bg-neutral-50/95 backdrop-blur-sm flex flex-col items-center justify-center gap-8">
+    {#each headerLinks as { href, label }}
       <a
         href={href}
-        on:click={() => open = false}
-        class={"text-2xl font-medium font-serif text-white " + (cleanPath === href
+        onclick={() => open = false}
+        class={"text-2xl font-medium font-serif text-neutral-900 " + (cleanPath === href
           ? "border-l-4 border-accent pl-3"
           : "")}
       >
@@ -155,21 +124,21 @@
       </a>
     {/each}
 
-    <div class="w-px h-8 bg-white/20"></div>
+    <div class="w-px h-8 bg-neutral-900/20"></div>
 
     <div class="max-w-xs">
-      <p class="text-2xl font-medium text-white text-center mb-6">Order Now</p>
+      <p class="text-2xl font-medium text-neutral-900 text-center mb-6">Order Now</p>
       <div class="space-y-5 flex flex-col items-start">
         {#each deliveryLinks as link}
           <a
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
-            on:click={() => open = false}
-            class="flex items-center gap-3 text-lg text-white/80 hover:text-white transition-colors"
+            onclick={() => open = false}
+            class="flex items-center gap-3 text-lg text-neutral-900/80 hover:text-neutral-900 transition-colors"
           >
             <span class="w-6 h-6 flex-shrink-0 flex items-center justify-center icon-svg" style="color: {link.color}">
-              {@html icons[link.name]}
+              {@html deliveryIcons[link.name]}
             </span>
             <span>{link.name}</span>
           </a>
@@ -178,10 +147,3 @@
     </div>
   </nav>
 </div>
-
-<style>
-  :global(.icon-svg svg) {
-    width: 100%;
-    height: 100%;
-  }
-</style>

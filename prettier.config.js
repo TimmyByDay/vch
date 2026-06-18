@@ -4,7 +4,7 @@ export default {
 	useTabs: true,
 	trailingComma: "all",
 	semi: true,
-	plugins: ["prettier-plugin-astro"],
+	plugins: ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
 	astroAllowShorthand: false,
 	proseWrap: "preserve",
 	overrides: [

@@ -1,19 +1,14 @@
 ---
-import { getCollection } from "astro:content";
+import { findBusiness, getBusinessEntries } from "../../data/business";
 import PageLayout from "../../layouts/PageLayout.astro";
 
-const entries = await getCollection("business");
-
-function find(name: string) {
-  return entries.find((e) => e.data.name === name)?.data.value;
-}
-
-const address = find("Address");
-const phone = find("Phone");
-const email = find("Email");
-const hours = find("Hours");
-const instagram = find("Instagram");
-const facebook = find("Facebook");
+const businessEntries = await getBusinessEntries();
+const address = findBusiness(businessEntries, "Address");
+const phone = findBusiness(businessEntries, "Phone");
+const email = findBusiness(businessEntries, "Email");
+const hours = findBusiness(businessEntries, "Hours");
+const instagram = findBusiness(businessEntries, "Instagram");
+const facebook = findBusiness(businessEntries, "Facebook");
 
 const mapSrc = address
   ? `https://maps.google.com/maps?q=${encodeURIComponent(address)}&output=embed`

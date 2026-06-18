@@ -1,40 +1,22 @@
 <script>
   import { siInstagram, siFacebook } from "simple-icons";
+  import { withFill } from "../data/icons";
+  import { navLinks } from "../data/navigation";
 
-  export let address = "";
-  export let hours = "";
-  export let phone = "";
-  export let email = "";
-  export let instagram = "";
-  export let facebook = "";
+  let {
+    address = "",
+    hours = "",
+    phone = "",
+    email = "",
+    instagram = "",
+    facebook = "",
+    deliveryLinks = [],
+  } = $props();
 
   const icons = {
-    Instagram: siInstagram.svg.replace("<svg", '<svg fill="currentColor"'),
-    Facebook: siFacebook.svg.replace("<svg", '<svg fill="currentColor"'),
+    Instagram: withFill(siInstagram.svg),
+    Facebook: withFill(siFacebook.svg),
   };
-
-  const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/menu", label: "Menu" },
-    { href: "/specials", label: "Specials" },
-    { href: "/about", label: "About" },
-    { href: "/contact", label: "Contact" },
-  ];
-
-  const deliveryLinks = [
-    {
-      name: "Deliveroo",
-      url: "https://deliveroo.co.uk/menu/Saint%2520Austell/saint-austell/vons-coffee-house",
-    },
-    {
-      name: "Uber Eats",
-      url: "https://www.ubereats.com/gb/store/vons-coffee-house/IqSP392jW-qI4UTCy_r45w?srsltid=AfmBOoqB2xCXfU2RBNNaI87pCPBiVwxbLejSvZ--uxy7lOSzJ36VubsG",
-    },
-    {
-      name: "Just Eat",
-      url: "https://www.just-eat.co.uk/restaurants-vons-coffee-house-st-austell",
-    },
-  ];
 </script>
 
 <footer class="border-t border-neutral-200 bg-neutral-100 text-neutral-800">
@@ -169,4 +151,3 @@
     </div>
   </div>
 </footer>
-

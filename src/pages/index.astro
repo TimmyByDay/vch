@@ -1,8 +1,108 @@
 ---
+import { getCollection } from "astro:content";
 import PageLayout from "../layouts/PageLayout.astro";
+import FloatingSlideshow from "../components/FloatingSlideshow.svelte";
+import { deliveryIcons } from "../data/delivery";
+import { toDeliveryLinks } from "../data/business";
+
+const deliveryEntries = await getCollection("delivery");
+const deliveryLinks = toDeliveryLinks(deliveryEntries);
+
+const drinkImages = [
+  "/decap-images/hero/drink/drink.png",
+  "/decap-images/hero/drink/drink2.png",
+  "/decap-images/hero/drink/drink3.png",
+  "/decap-images/hero/drink/drink4.png",
+];
+
+const foodImages = [
+  "/decap-images/hero/food/food1.png",
+  "/decap-images/hero/food/food2.png",
+  "/decap-images/hero/food/food3.png",
+  "/decap-images/hero/food/food4.png",
+];
 ---
 
 <PageLayout title="Home">
-  <main class="max-w-3xl mx-auto p-6">
-  </main>
+  <section class="relative min-h-[65vh] md:min-h-[45vh] overflow-hidden -mt-16 pt-12 pb-16">
+    <div class="absolute inset-0 z-0 text-accent/10 pointer-events-none" aria-hidden="true">
+      <svg class="absolute top-0 left-0 -translate-x-1/3 -translate-y-1/3" width="600" height="600" viewBox="0 0 600 600" fill="none">
+        <path d="M515.266 181.33C377.943 51.564 128.537 136.256 50.8123 293.565C-26.9127 450.874 125.728 600 125.728 600" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      </svg>
+      <svg class="absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4" width="700" height="700" viewBox="0 0 700 700" fill="none">
+        <path d="M26.8838 528.274C193.934 689.816 480.051 637.218 594.397 451.983C708.742 266.748 543.953 2.22235 543.953 2.22235" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      </svg>
+    </div>
+    <div
+      class="absolute inset-0 bg-cover bg-center"
+      style="background-image: url('/hero3.jpg')"
+    />
+    <div class="absolute inset-0 bg-white/97" />
+    <div class="absolute inset-0 z-[5] pointer-events-none overflow-hidden">
+      <FloatingSlideshow
+        client:load
+        positionClass="left-1/2 -translate-x-40 md:-translate-x-72 top-[55%] md:top-[55%]"
+        sizeClass="w-14 md:w-24"
+        images={drinkImages}
+        rotation={-15}
+        rotationY={14}
+        floatDelay="0ms"
+      />
+      <FloatingSlideshow
+        client:load
+        positionClass="left-1/2 translate-x-20 md:translate-x-48 top-[55%] md:top-[55%]"
+        sizeClass="w-14 md:w-24"
+        images={foodImages}
+        rotation={15}
+        rotationY={-10}
+        floatDelay="150ms"
+      />
+    </div>
+    <div class="relative z-10 text-center px-4 max-w-3xl mx-auto pt-24 md:pt-32">
+      <span class="inline-block bg-accent/10 text-accent text-xs tracking-wider uppercase rounded-full px-4 py-1.5 mb-5">
+        Vegan-friendly
+      </span>
+      <h1 class="text-3xl md:text-5xl text-neutral-900 mb-4">
+        Freshly <span class="font-bold">Brewed</span>. Freshly <span class="font-bold">Baked</span>. Freshly <span class="font-bold">Served</span>.
+      </h1>
+      <p class="text-neutral-600 text-base md:text-lg">
+        Artisan coffee and fresh bakes in St. Austell
+      </p>
+      <div class="mt-8 md:mt-10">
+        <span class="inline-block rounded-full bg-neutral-50/70" style="box-shadow: 0 5px 0 0 rgba(0,0,0,0.2), 0 10px 0 0 var(--color-neutral-50), 0 4px 12px rgba(0,0,0,0.1);">
+          <a
+            href="/menu"
+            class="block bg-secondary px-10 py-4 rounded-full text-base font-semibold transition-all hover:-translate-y-1"
+          >
+            View Menu
+          </a>
+        </span>
+      </div>
+      <div class="mt-12 flex items-center justify-center gap-x-10 text-sm text-neutral-500">
+        {deliveryLinks.map((link) => (
+          <a
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 font-semibold text-secondary hover:text-accent transition-colors"
+          >
+            <span class="w-6 h-6 flex-shrink-0 flex items-center justify-center icon-svg" style={`color: ${link.color}`} set:html={deliveryIcons[link.name]} />
+            {link.name}
+          </a>
+        ))}
+      </div>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
+  </section>
 </PageLayout>
+
+<style>
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+     50% { transform: translateY(-8px); }
+  }
+  :global(.animate-float) {
+    animation: float 7s ease-in-out infinite;
+    animation-composition: accumulate;
+  }
+</style>

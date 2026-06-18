@@ -17,10 +17,9 @@ import { initializeImageEditorComponent } from "./image-editor-component.js";
  * Custom preview template that transforms image paths in the rendered preview
  * This ensures images display correctly in the CMS preview pane
  */
-var CustomPreview = createClass({
-	render: function () {
-		var entry = this.props.entry;
-		var body = this.props.widgetFor("body");
+	var CustomPreview = createClass({
+		render: function () {
+			var body = this.props.widgetFor("body");
 
 		return h(
 			"div",
