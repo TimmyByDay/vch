@@ -71,11 +71,11 @@ We have an admin panel (Decap CMS) and basic pages, but the site isn't productio
 - [x] Seed 4 featured drinks/food items so the section isn't empty
 
 ### Day 4: Contact Page
-- [ ] Add `email` entry to Business collection (via Decap CMS config and content schema)
-- [ ] Create `src/pages/contact/index.astro` — display address, phone, email, hours
-- [ ] Social link buttons (Instagram, Facebook)
-- [ ] Google Maps `<iframe>` embed with the cafe address
-- [ ] Add `/contact` to nav header
+- [x] Add `email` entry to Business collection (via Decap CMS config and content schema)
+- [x] Create `src/pages/contact/index.astro` — display address, phone, email, hours
+- [x] Social link buttons (Instagram, Facebook)
+- [x] Google Maps `<iframe>` embed with the cafe address
+- [x] Add `/contact` to nav header
 
 ### Day 5: Deployment & Polish
 - [ ] Set up hosting (Vercel recommended)
