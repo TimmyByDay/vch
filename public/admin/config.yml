@@ -107,8 +107,10 @@ collections:
 
   - name: "delivery"
     label: "Delivery Links"
+    label_singular: "Delivery Link"
     folder: "src/content/delivery"
     create: true
+    identifier_field: "provider"
     extension: json
     format: json
     fields:
