@@ -84,4 +84,5 @@ We have an admin panel (Decap CMS) and basic pages, but the site isn't productio
 - [ ] Update site title, favicon, meta description
 - [x] Create `/terms` — Terms of Service page
 - [x] Create `/privacy` — Privacy Policy page
+- [x] Remove separate specials page — add `special` boolean + `specialPrice` to drinks/food/cakes instead
 - [ ] Seed remaining menu content via admin
