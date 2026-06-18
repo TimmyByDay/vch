@@ -1082,9 +1082,6 @@
   .grid-rows-1 {
     grid-template-rows: repeat(1, minmax(0, 1fr));
   }
-  .grid-rows-\[0fr\] {
-    grid-template-rows: 0fr;
-  }
   .flex-col {
     flex-direction: column;
   }
@@ -1549,13 +1546,6 @@
     --tw-prose-th-borders: var(--tw-prose-invert-th-borders);
     --tw-prose-td-borders: var(--tw-prose-invert-td-borders);
   }
-  .group-hover\:grid-rows-\[1fr\] {
-    &:is(:where(.group):hover *) {
-      @media (hover: hover) {
-        grid-template-rows: 1fr;
-      }
-    }
-  }
   .hover\:-translate-y-1 {
     &:hover {
       @media (hover: hover) {
@@ -1630,6 +1620,11 @@
       }
     }
   }
+  .max-sm\:grid-rows-\[1fr\] {
+    @media (width < 40rem) {
+      grid-template-rows: 1fr;
+    }
+  }
   .sm\:h-\[290px\] {
     @media (width >= 40rem) {
       height: 290px;
@@ -1638,6 +1633,20 @@
   .sm\:grid-cols-2 {
     @media (width >= 40rem) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .sm\:grid-rows-\[0fr\] {
+    @media (width >= 40rem) {
+      grid-template-rows: 0fr;
+    }
+  }
+  .sm\:group-hover\:grid-rows-\[1fr\] {
+    @media (width >= 40rem) {
+      &:is(:where(.group):hover *) {
+        @media (hover: hover) {
+          grid-template-rows: 1fr;
+        }
+      }
     }
   }
   .md\:relative {

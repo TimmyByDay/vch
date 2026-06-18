@@ -26,9 +26,7 @@
     </span>
   </div>
   <div
-    class="grid transition-[grid-template-rows] duration-300 ease-in-out"
-    class:grid-rows-[0fr]={true}
-    class:group-hover:grid-rows-[1fr]={true}
+    class="grid transition-[grid-template-rows] duration-300 ease-in-out max-sm:grid-rows-[1fr] sm:grid-rows-[0fr] sm:group-hover:grid-rows-[1fr]"
   >
     <div class="overflow-hidden min-h-0">
       <div class="pt-3 pb-1 space-y-1">
