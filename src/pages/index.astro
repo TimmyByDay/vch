@@ -12,15 +12,6 @@ const deliveryLinks = toDeliveryLinks(deliveryEntries);
 const drinkEntries = await getCollection("drinks");
 const foodEntries = await getCollection("food");
 const cakeEntries = await getCollection("cakes");
-const featuredItems = [
-  ...drinkEntries.filter((e) => e.data.featured).map((e) => ({ ...e.data, type: "drink" })),
-  ...foodEntries.filter((e) => e.data.featured).map((e) => ({ ...e.data, type: "food" })),
-  ...cakeEntries.filter((e) => e.data.featured).map((e) => ({ ...e.data, type: "cakes" })),
-];
-
-const businessEntries = await getBusinessEntries();
-const hours = findBusiness(businessEntries, "Hours");
-
 const drinkImages = [
   "/hero/drink/drink.png",
   "/hero/drink/drink2.png",
@@ -34,6 +25,26 @@ const foodImages = [
   "/hero/food/food3.png",
   "/hero/food/food4.png",
 ];
+
+let drinkImgIdx = 0;
+let foodImgIdx = 0;
+const featuredItems = [
+  ...drinkEntries.filter((e) => e.data.featured).map((e) => {
+    const image = drinkImages[drinkImgIdx++ % drinkImages.length];
+    return { ...e.data, type: "drink", image };
+  }),
+  ...foodEntries.filter((e) => e.data.featured).map((e) => {
+    const image = foodImages[foodImgIdx++ % foodImages.length];
+    return { ...e.data, type: "food", image };
+  }),
+  ...cakeEntries.filter((e) => e.data.featured).map((e) => {
+    const image = foodImages[foodImgIdx++ % foodImages.length];
+    return { ...e.data, type: "cakes", image };
+  }),
+];
+
+const businessEntries = await getBusinessEntries();
+const hours = findBusiness(businessEntries, "Hours");
 ---
 
 <PageLayout title="Home">
@@ -122,6 +133,7 @@ const foodImages = [
             price={item.price}
             vegan={item.vegan}
             type={item.type}
+            image={item.image}
           />
         ))}
       </div>

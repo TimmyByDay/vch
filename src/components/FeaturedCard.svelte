@@ -5,6 +5,7 @@
     price = "",
     vegan = false,
     type = "drink",
+    image = "",
   } = $props();
 
   const gradients = {
@@ -18,10 +19,13 @@
 
 <div class="group cursor-pointer rounded-xl overflow-hidden h-[340px] sm:h-[290px] lg:h-[270px] flex flex-col">
   <div
-    class="flex-1 flex items-center justify-center p-4"
-    style="background: {gradient}"
+    class="flex-1 flex items-center justify-center p-4 relative"
+    style="background: {image ? `url(${image}) center/cover` : gradient}"
   >
-    <span class="text-neutral-50 text-xl md:text-2xl font-bold text-center drop-shadow-md">
+    {#if image}
+      <div class="absolute inset-0 bg-black/30" />
+    {/if}
+    <span class="relative z-10 text-neutral-50 text-xl md:text-2xl font-bold text-center drop-shadow-md">
       {name}
     </span>
   </div>
