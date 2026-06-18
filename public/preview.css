@@ -1283,7 +1283,7 @@
     text-decoration-line: underline;
   }
   .shadow-button {
-    --tw-shadow: 0 5px 0 0 var(--tw-shadow-color, rgba(0,0,0,0.2)), 0 4px 12px var(--tw-shadow-color, var(--color-neutral-50));
+    --tw-shadow: 0 5px 0 0 var(--tw-shadow-color, rgba(0,0,0,0.2)), 0 4px 0 0 var(--tw-shadow-color, var(--color-neutral-50));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
   .shadow-xl {
