@@ -1054,8 +1054,8 @@
     --tw-translate-x: calc(1/4 * 100%);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
-  .translate-x-20 {
-    --tw-translate-x: calc(var(--spacing) * 20);
+  .translate-x-40 {
+    --tw-translate-x: calc(var(--spacing) * 40);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
   .translate-x-full {
@@ -1695,9 +1695,9 @@
       translate: var(--tw-translate-x) var(--tw-translate-y);
     }
   }
-  .md\:translate-x-48 {
+  .md\:translate-x-72 {
     @media (width >= 48rem) {
-      --tw-translate-x: calc(var(--spacing) * 48);
+      --tw-translate-x: calc(var(--spacing) * 72);
       translate: var(--tw-translate-x) var(--tw-translate-y);
     }
   }
