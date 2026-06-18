@@ -1,5 +1,6 @@
 <script>
   import { onMount } from "svelte";
+  import { fade } from "svelte/transition";
 
   let {
     positionClass = "",
@@ -11,74 +12,46 @@
   } = $props();
 
   let currentIdx = $state(0);
-  let transitioning = $state(false);
   let timer;
-  let mounted = $state(false);
 
   const baseTransform = `rotateY(${rotationY}deg) rotate(${rotation}deg)`;
 
-  async function swap() {
-    const next = (currentIdx + 1) % images.length;
-    transitioning = true;
-    await new Promise((r) => setTimeout(r, 700));
-    if (!mounted) return;
-    currentIdx = next;
-    transitioning = false;
+  function swap() {
+    currentIdx = (currentIdx + 1) % images.length;
     timer = setTimeout(swap, 5000);
   }
 
   onMount(() => {
     if (images.length === 0) return;
-    mounted = true;
-
-    Promise.all(
-      images.map(
-        (src) =>
-          new Promise((resolve) => {
-            const img = new Image();
-            img.onload = resolve;
-            img.onerror = resolve;
-            img.src = src;
-          }),
-      ),
-    ).then(() => {
-      if (!mounted) return;
-      timer = setTimeout(swap, 5000);
-    });
-
-    return () => {
-      clearTimeout(timer);
-      mounted = false;
-    };
+    timer = setTimeout(swap, 5000);
+    return () => clearTimeout(timer);
   });
 </script>
 
 {#if images.length > 0}
+  <div class="hidden" aria-hidden="true">
+    {#each images as src}
+      <img {src} alt="" />
+    {/each}
+  </div>
+
   <span
-    class="absolute {positionClass} {sizeClass} grid grid-cols-1 grid-rows-1"
+    class="absolute {positionClass} {sizeClass}"
     style="perspective: 500px; transform-style: preserve-3d;"
   >
-    <img
-      src={images[currentIdx]}
-      alt=""
-      class="col-start-1 row-start-1 w-full h-auto animate-float pointer-events-none"
-      style="
-        animation-delay: {floatDelay};
-        transform: {baseTransform};
-        opacity: {transitioning ? 0 : 1};
-        transition: {transitioning ? 'opacity 0.7s ease' : 'none'};
-      "
-    />
-    <img
-      src={images[(currentIdx + 1) % images.length]}
-      alt=""
-      class="col-start-1 row-start-1 w-full h-auto animate-float pointer-events-none"
-      style="
-        animation-delay: {floatDelay};
-        transform: {baseTransform};
-        opacity: {transitioning ? 1 : 0};
-        transition: {transitioning ? 'opacity 0.7s ease' : 'none'};
-      "
-    />
+    <span
+      class="block w-full h-auto grid grid-cols-1 grid-rows-1"
+      style="transform: {baseTransform}; transform-style: preserve-3d;"
+    >
+      {#key currentIdx}
+        <img
+          src={images[currentIdx]}
+          alt=""
+          class="col-start-1 row-start-1 w-full h-auto animate-float pointer-events-none"
+          style="animation-delay: {floatDelay};"
+          transition:fade={{ duration: 700 }}
+        />
+      {/key}
+    </span>
   </span>
 {/if}
