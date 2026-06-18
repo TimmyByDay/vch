@@ -2,8 +2,6 @@ import { defineConfig, envField } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import node from "@astrojs/node";
 import svelte from "@astrojs/svelte";
-import { viteStaticCopy } from "vite-plugin-static-copy";
-
 export default defineConfig({
 	site: "http://localhost:4321",
 	integrations: [svelte()],
@@ -14,17 +12,7 @@ export default defineConfig({
 		},
 	},
 	vite: {
-		plugins: [
-			tailwindcss() as any,
-			viteStaticCopy({
-				targets: [
-					{
-						src: "src/assets/img/*",
-						dest: "decap-images",
-					},
-				],
-			}) as any,
-		],
+		plugins: [tailwindcss() as any],
 	},
 	adapter: node({
 		mode: "standalone",

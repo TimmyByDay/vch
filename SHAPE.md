@@ -65,7 +65,7 @@ We have an admin panel (Decap CMS) and basic pages, but the site isn't productio
 - [x] Update all existing pages to pass a title prop
 
 ### Day 3: Homepage
-- [ ] Hero section with tagline and CTA to /menu
+- [x] Hero section with tagline and CTA to /menu
 - [ ] Featured items section — query drinks/food where `featured: true`, render cards
 - [ ] Opening hours widget — query Business collection for hours
 - [ ] Seed 3–4 featured drinks/food items so the section isn't empty
