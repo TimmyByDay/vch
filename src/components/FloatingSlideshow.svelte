@@ -11,18 +11,19 @@
   } = $props();
 
   let currentIdx = $state(0);
+  let nextIdx = $state(0);
   let transitioning = $state(false);
   let timer;
   let mounted = $state(false);
 
-  let baseTransform = `rotateY(${rotationY}deg) rotate(${rotation}deg)`;
+  const baseTransform = `rotateY(${rotationY}deg) rotate(${rotation}deg)`;
 
   async function swap() {
-    const next = (currentIdx + 1) % images.length;
+    nextIdx = (currentIdx + 1) % images.length;
     transitioning = true;
     await new Promise((r) => setTimeout(r, 700));
     if (!mounted) return;
-    currentIdx = next;
+    currentIdx = nextIdx;
     transitioning = false;
     timer = setTimeout(swap, 5000);
   }
@@ -54,16 +55,23 @@
         transition: {transitioning ? 'opacity 0.7s ease' : 'none'};
       "
     />
-    <img
-      src={images[(currentIdx + 1) % images.length]}
-      alt=""
-      class="col-start-1 row-start-1 w-full h-auto animate-float pointer-events-none"
-      style="
-        animation-delay: {floatDelay};
-        transform: {baseTransform};
-        opacity: {transitioning ? 1 : 0};
-        transition: {transitioning ? 'opacity 0.7s ease' : 'none'};
-      "
-    />
+    {#if transitioning}
+      <img
+        src={images[nextIdx]}
+        alt=""
+        class="col-start-1 row-start-1 w-full h-auto animate-float animate-fadeIn pointer-events-none"
+        style="animation-delay: {floatDelay}; transform: {baseTransform};"
+      />
+    {/if}
   </span>
 {/if}
+
+<style>
+  :global(.animate-fadeIn) {
+    animation: fadeIn 0.7s ease forwards;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+</style>
