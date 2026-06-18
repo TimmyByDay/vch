@@ -185,6 +185,7 @@
   },
   "active": "2a0d08ccb72cbb16",
   "lastOpenFiles": [
+    "dist/client/_astro/index.ByvdnSmE.css",
     "dist/client/index.html",
     "dist/client/terms/index.html",
     "dist/client/terms",
@@ -194,8 +195,7 @@
     "dist/client/menu",
     "dist/client/contact/index.html",
     "dist/client/contact",
-    "dist/client/about/index.html",
-    "dist/client/about",
+    "dist/client/admin/index.html",
     "dist/client/hero3.jpg",
     "dist/client/hero/food/food4.png",
     "dist/client/hero/food/food3.png",
