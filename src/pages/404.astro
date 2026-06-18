@@ -1,0 +1,25 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+---
+
+<PageLayout title="Page Not Found" description="This page doesn't exist — but there's plenty of coffee.">
+  <main class="flex flex-col items-center justify-center min-h-[60vh] px-4 text-center">
+    <h1 class="text-5xl md:text-6xl font-bold text-neutral-900 mb-4">404</h1>
+    <p class="text-lg md:text-xl text-neutral-600 mb-2">Looks like this brew doesn't exist.</p>
+    <p class="text-neutral-400 mb-8">The page you're looking for has gone cold.</p>
+    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+      <a
+        href="/"
+        class="inline-block bg-secondary px-8 py-3 rounded-full text-white font-semibold transition-all hover:-translate-y-0.5"
+      >
+        Back Home
+      </a>
+      <a
+        href="/menu"
+        class="inline-block border border-secondary px-8 py-3 rounded-full text-secondary font-semibold transition-all hover:bg-secondary/10"
+      >
+        View Menu
+      </a>
+    </div>
+  </main>
+</PageLayout>

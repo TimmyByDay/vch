@@ -21,7 +21,7 @@
 
 <footer class="border-t border-neutral-200 bg-neutral-100 text-neutral-800">
   <div class="max-w-5xl mx-auto px-4 py-12">
-    <div class="grid gap-10 md:grid-cols-4">
+    <div class="grid gap-8 md:gap-10 md:grid-cols-4">
       <div>
         <h3 class="font-serif text-sm font-semibold text-neutral-600 mb-4 uppercase tracking-wider">
           Navigate

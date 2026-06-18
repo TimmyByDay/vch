@@ -71,10 +71,19 @@ const deliveryCollection = defineCollection({
   }),
 });
 
+const testimonialsCollection = defineCollection({
+  type: "data",
+  schema: z.object({
+    quote: z.string(),
+    author: z.string(),
+  }),
+});
+
 export const collections = {
   drinks: drinksCollection,
   food: foodCollection,
   cakes: cakesCollection,
   business: businessCollection,
   delivery: deliveryCollection,
+  testimonials: testimonialsCollection,
 };

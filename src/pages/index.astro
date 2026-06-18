@@ -43,8 +43,44 @@ const featuredItems = [
   }),
 ];
 
+const allSpecials = [
+  ...drinkEntries.filter((e) => e.data.special).map((e) => ({ ...e.data, type: "drink" })),
+  ...foodEntries.filter((e) => e.data.special).map((e) => ({ ...e.data, type: "food" })),
+  ...cakeEntries.filter((e) => e.data.special).map((e) => ({ ...e.data, type: "cakes" })),
+];
+
 const businessEntries = await getBusinessEntries();
 const hours = findBusiness(businessEntries, "Hours");
+const address = findBusiness(businessEntries, "Address");
+const phone = findBusiness(businessEntries, "Phone");
+const email = findBusiness(businessEntries, "Email");
+const instagram = findBusiness(businessEntries, "Instagram");
+const facebook = findBusiness(businessEntries, "Facebook");
+
+const about = findBusiness(businessEntries, "About");
+const testimonials = await getCollection("testimonials");
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CafeOrCoffeeShop",
+  name: "Vons Coffee House",
+  image: "https://vonscoffeehouse.com/hero3.jpg",
+  url: "https://vonscoffeehouse.com",
+  telephone: phone,
+  email: email,
+  description: about,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: address,
+    addressLocality: "St Austell",
+    addressCountry: "GB",
+  },
+  openingHoursSpecification: [
+    { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday"], opens: "10:30", closes: "16:00" },
+    { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "10:30", closes: "15:00" },
+  ],
+  sameAs: [instagram, facebook].filter(Boolean),
+};
 ---
 
 <PageLayout title="Home">
@@ -65,8 +101,8 @@ const hours = findBusiness(businessEntries, "Hours");
     <div class="absolute inset-0 z-[5] pointer-events-none overflow-hidden">
       <FloatingSlideshow
         client:load
-        positionClass="left-1/2 -translate-x-40 md:-translate-x-72 top-[65%] md:top-[65%]"
-        sizeClass="w-14 md:w-24"
+        positionClass="left-1/2 -translate-x-43 md:-translate-x-72 top-[62%] md:top-[65%]"
+        sizeClass="w-20 md:w-24"
         images={drinkImages}
         rotation={-15}
         rotationY={14}
@@ -74,8 +110,8 @@ const hours = findBusiness(businessEntries, "Hours");
       />
       <FloatingSlideshow
         client:load
-        positionClass="left-1/2 translate-x-26 md:translate-x-48 top-[65%] md:top-[65%]"
-        sizeClass="w-14 md:w-24"
+        positionClass="left-1/2 translate-x-22 md:translate-x-48 top-[62%] md:top-[65%]"
+        sizeClass="w-20 md:w-24"
         images={foodImages}
         rotation={15}
         rotationY={-10}
@@ -92,7 +128,7 @@ const hours = findBusiness(businessEntries, "Hours");
       <p class="text-neutral-600 text-base md:text-lg">
         Artisan coffee and fresh bakes in St. Austell
       </p>
-      <div class="mt-8 md:mt-10">
+      <div class="mt-8 md:mt-10 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6">
         <span class="inline-block rounded-full shadow-button">
           <a
             href="/menu"
@@ -101,8 +137,14 @@ const hours = findBusiness(businessEntries, "Hours");
             View Menu
           </a>
         </span>
+        <a
+          href="/contact"
+          class="inline-block border-2 border-secondary/60 px-8 py-3 rounded-full text-secondary font-semibold transition-all hover:border-secondary text-sm"
+        >
+          Find Us
+        </a>
       </div>
-      <div class="mt-12 flex items-center justify-center gap-x-10 text-sm text-neutral-500">
+      <div class="mt-12 flex items-center justify-center gap-x-6 md:gap-x-10 text-sm text-neutral-500">
         {deliveryLinks.map((link) => (
           <a
             href={link.url}
@@ -119,10 +161,12 @@ const hours = findBusiness(businessEntries, "Hours");
     <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
   </section>
 
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
   {featuredItems.length > 0 && (
     <section class="py-16 px-4 max-w-6xl mx-auto">
-      <h2 class="text-2xl md:text-3xl font-bold text-center text-neutral-900 mb-10">
-        Featured
+      <h2 class="text-2xl md:text-3xl font-bold text-center text-neutral-900 mb-6 md:mb-10">
+        What&apos;s Brewing
       </h2>
       <div class="flex flex-wrap justify-center gap-6">
         {featuredItems.map((item) => (
@@ -144,9 +188,49 @@ const hours = findBusiness(businessEntries, "Hours");
     </section>
   )}
 
+  {allSpecials.length > 0 && (
+    <section class="pb-16 px-4 max-w-3xl mx-auto">
+      <div class="bg-accent/5 border border-accent/20 rounded-xl p-6 md:p-8 text-center">
+        <h2 class="text-2xl md:text-3xl font-bold text-neutral-900 mb-2">
+          This Week's Specials
+        </h2>
+        <p class="text-neutral-600 mb-6 text-sm">Limited-time deals you won't want to miss</p>
+        <div class="flex flex-wrap justify-center gap-4">
+          {allSpecials.map((item) => (
+            <span class="inline-flex items-center gap-2 bg-white/80 rounded-full px-4 py-2 text-sm font-medium text-neutral-900">
+              {item.name}
+              <span class="text-accent font-semibold">{item.specialPrice}</span>
+            </span>
+          ))}
+        </div>
+        <div class="mt-6">
+          <a href="/menu" class="text-sm font-semibold text-secondary hover:text-accent underline underline-offset-2">
+            View full menu &rarr;
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {testimonials.length > 0 && (
+    <section class="pb-16 px-4 max-w-4xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-bold text-center text-neutral-900 mb-6 md:mb-10">
+        What People Say
+      </h2>
+      <div class="grid md:grid-cols-3 gap-4 md:gap-6">
+        {testimonials.map((entry) => (
+          <div class="bg-neutral-50 rounded-xl p-5 md:p-6 flex flex-col">
+            <p class="text-neutral-600 text-sm leading-relaxed flex-1">&ldquo;{entry.data.quote}&rdquo;</p>
+            <p class="text-neutral-900 font-semibold text-sm mt-3 md:mt-4">&mdash; {entry.data.author}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
   {hours && (
     <section class="pb-16 px-4">
-      <div class="max-w-sm mx-auto bg-neutral-50 rounded-xl p-6 text-center">
+      <div class="max-w-sm mx-auto bg-neutral-50 rounded-xl p-5 md:p-6 text-center">
         <h2 class="text-lg font-semibold text-neutral-900 mb-2">Opening Hours</h2>
         <p class="text-neutral-600 text-sm whitespace-pre-line">{hours}</p>
       </div>

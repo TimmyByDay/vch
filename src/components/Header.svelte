@@ -111,12 +111,12 @@
   onclick={handleBackdrop}
   role="presentation"
 >
-  <nav class="w-full h-full bg-neutral-50/95 backdrop-blur-sm flex flex-col items-center justify-center gap-8">
+  <nav class="w-full h-full bg-neutral-50/95 backdrop-blur-sm flex flex-col items-center justify-center gap-6 md:gap-8">
     {#each headerLinks as { href, label }}
       <a
         href={href}
         onclick={() => open = false}
-        class={"text-2xl font-medium font-serif text-neutral-900 " + (cleanPath === href
+        class={"text-xl md:text-2xl font-medium font-serif text-neutral-900 " + (cleanPath === href
           ? "border-l-4 border-accent pl-3"
           : "")}
       >
@@ -127,8 +127,8 @@
     <div class="w-px h-8 bg-neutral-900/20"></div>
 
     <div class="max-w-xs">
-      <p class="text-2xl font-medium text-neutral-900 text-center mb-6">Order Now</p>
-      <div class="space-y-5 flex flex-col items-start">
+      <p class="text-xl md:text-2xl font-medium text-neutral-900 text-center mb-4 md:mb-6">Order Now</p>
+      <div class="space-y-4 md:space-y-5 flex flex-col items-start">
         {#each deliveryLinks as link}
           <a
             href={link.url}

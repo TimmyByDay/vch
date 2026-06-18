@@ -19,7 +19,7 @@
   const gradient = gradients[type] || gradients.drink;
 </script>
 
-<div class="group cursor-pointer rounded-xl overflow-hidden h-[340px] sm:h-[290px] lg:h-[270px] flex flex-col">
+<div class="group cursor-pointer rounded-xl overflow-hidden h-[300px] sm:h-[290px] lg:h-[270px] flex flex-col">
   <div
     class="flex-1 flex items-center justify-center p-4 relative"
     style="background: {image ? `url(${image}) center/cover` : gradient}"

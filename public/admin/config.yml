@@ -121,3 +121,15 @@ collections:
       - { label: "Brand Color", name: "color", widget: "string", pattern: ["^#[0-9A-Fa-f]{6}$", "Must be a hex color e.g. #00CCBC"] }
       - { label: "Order", name: "order", widget: "number", value_type: "int", default: 0 }
 
+  - name: "testimonials"
+    label: "Testimonials"
+    label_singular: "Testimonial"
+    folder: "src/content/testimonials"
+    create: true
+    identifier_field: "author"
+    extension: json
+    format: json
+    fields:
+      - { label: "Quote", name: "quote", widget: "text" }
+      - { label: "Author", name: "author", widget: "string" }
+

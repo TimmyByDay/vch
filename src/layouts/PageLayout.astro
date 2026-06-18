@@ -7,9 +7,15 @@ import "../assets/styles/global.css";
 
 export interface Props {
   title?: string;
+  description?: string;
+  image?: string;
 }
 
-const { title = "Vons Coffee House" } = Astro.props;
+const {
+  title = "Vons Coffee House",
+  description = "A quirky coffee house in St Austell, serving freshly ground coffee, freshly prepared food, and locally sourced cakes & bakes.",
+  image = "/hero3.jpg",
+} = Astro.props;
 
 const businessEntries = await getBusinessEntries();
 const address = findBusiness(businessEntries, "Address");
@@ -20,6 +26,10 @@ const instagram = findBusiness(businessEntries, "Instagram");
 const facebook = findBusiness(businessEntries, "Facebook");
 const deliveryEntries = await getCollection("delivery");
 const deliveryLinks = toDeliveryLinks(deliveryEntries);
+
+const siteUrl = "https://vonscoffeehouse.com";
+const fullTitle = title === "Vons Coffee House" ? title : `${title} | Vons Coffee House`;
+const fullImage = image.startsWith("http") ? image : `${siteUrl}${image}`;
 ---
 
 <html lang="en">
@@ -28,7 +38,18 @@ const deliveryLinks = toDeliveryLinks(deliveryEntries);
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={fullImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullImage} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   <body class="text-neutral-50">
     <Header currentPath={Astro.url.pathname} deliveryLinks={deliveryLinks} client:load />

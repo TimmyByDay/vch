@@ -2,9 +2,10 @@ import { defineConfig, envField } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import node from "@astrojs/node";
 import svelte from "@astrojs/svelte";
+import sitemap from "@astrojs/sitemap";
 export default defineConfig({
-	site: "http://localhost:4321",
-	integrations: [svelte()],
+	site: "https://vonscoffeehouse.com",
+	integrations: [svelte(), sitemap()],
 	env: {
 		schema: {
 			OAUTH_GITHUB_CLIENT_ID: envField.string({ context: "server", access: "secret" }),

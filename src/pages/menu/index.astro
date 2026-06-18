@@ -33,18 +33,30 @@ function formatCategory(cat: string) {
             </h3>
             <ul class="space-y-2">
               {items.map((entry) => (
-                <li class="flex justify-between border-b border-neutral-800 pb-1">
-                  <span>{entry.data.name}</span>
-                  <span>
-                    {entry.data.special && entry.data.specialPrice ? (
-                      <>
-                        <span class="line-through text-red-400/60">{entry.data.price}</span>
-                        <span class="ml-2 font-semibold text-neutral-50">{entry.data.specialPrice}</span>
-                      </>
-                    ) : (
-                      <span class="text-neutral-200">{entry.data.price}</span>
-                    )}
-                  </span>
+                <li class="border-b border-neutral-800 pb-2 pt-1">
+                  <div class="flex justify-between items-start">
+                    <div class="flex-1 pr-4">
+                      <div class="flex items-center gap-2 flex-wrap">
+                        <span class="font-medium">{entry.data.name}</span>
+                        {entry.data.vegan && (
+                          <span class="text-xs bg-accent/20 text-accent rounded-full px-2 py-0.5 font-medium">Vegan</span>
+                        )}
+                      </div>
+                      {entry.data.description && (
+                        <p class="text-sm text-neutral-400 mt-0.5">{entry.data.description}</p>
+                      )}
+                    </div>
+                    <span class="flex-shrink-0">
+                      {entry.data.special && entry.data.specialPrice ? (
+                        <>
+                          <span class="line-through text-red-400/60">{entry.data.price}</span>
+                          <span class="ml-2 font-semibold text-neutral-50">{entry.data.specialPrice}</span>
+                        </>
+                      ) : (
+                        <span class="text-neutral-200">{entry.data.price}</span>
+                      )}
+                    </span>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -65,18 +77,30 @@ function formatCategory(cat: string) {
             </h3>
             <ul class="space-y-2">
               {items.map((entry) => (
-                <li class="flex justify-between border-b border-neutral-800 pb-1">
-                  <span>{entry.data.name}</span>
-                  <span>
-                    {entry.data.special && entry.data.specialPrice ? (
-                      <>
-                        <span class="line-through text-red-400/60">{entry.data.price}</span>
-                        <span class="ml-2 font-semibold text-neutral-50">{entry.data.specialPrice}</span>
-                      </>
-                    ) : (
-                      <span class="text-neutral-200">{entry.data.price}</span>
-                    )}
-                  </span>
+                <li class="border-b border-neutral-800 pb-2 pt-1">
+                  <div class="flex justify-between items-start">
+                    <div class="flex-1 pr-4">
+                      <div class="flex items-center gap-2 flex-wrap">
+                        <span class="font-medium">{entry.data.name}</span>
+                        {entry.data.vegan && (
+                          <span class="text-xs bg-accent/20 text-accent rounded-full px-2 py-0.5 font-medium">Vegan</span>
+                        )}
+                      </div>
+                      {entry.data.description && (
+                        <p class="text-sm text-neutral-400 mt-0.5">{entry.data.description}</p>
+                      )}
+                    </div>
+                    <span class="flex-shrink-0">
+                      {entry.data.special && entry.data.specialPrice ? (
+                        <>
+                          <span class="line-through text-red-400/60">{entry.data.price}</span>
+                          <span class="ml-2 font-semibold text-neutral-50">{entry.data.specialPrice}</span>
+                        </>
+                      ) : (
+                        <span class="text-neutral-200">{entry.data.price}</span>
+                      )}
+                    </span>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -89,18 +113,30 @@ function formatCategory(cat: string) {
       <h2 class="text-2xl font-semibold mb-4">Cakes & Bakes</h2>
       <ul class="space-y-2">
         {cakes.map((entry) => (
-          <li class="flex justify-between border-b border-neutral-800 pb-1">
-            <span>{entry.data.name}</span>
-            <span>
-              {entry.data.special && entry.data.specialPrice ? (
-                <>
-                  <span class="line-through text-red-400/60">{entry.data.price}</span>
-                  <span class="ml-2 font-semibold text-neutral-50">{entry.data.specialPrice}</span>
-                </>
-              ) : (
-                <span class="text-neutral-200">{entry.data.price}</span>
-              )}
-            </span>
+          <li class="border-b border-neutral-800 pb-2 pt-1">
+            <div class="flex justify-between items-start">
+              <div class="flex-1 pr-4">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="font-medium">{entry.data.name}</span>
+                  {entry.data.vegan && (
+                    <span class="text-xs bg-accent/20 text-accent rounded-full px-2 py-0.5 font-medium">Vegan</span>
+                  )}
+                </div>
+                {entry.data.description && (
+                  <p class="text-sm text-neutral-400 mt-0.5">{entry.data.description}</p>
+                )}
+              </div>
+              <span class="flex-shrink-0">
+                {entry.data.special && entry.data.specialPrice ? (
+                  <>
+                    <span class="line-through text-red-400/60">{entry.data.price}</span>
+                    <span class="ml-2 font-semibold text-neutral-50">{entry.data.specialPrice}</span>
+                  </>
+                ) : (
+                  <span class="text-neutral-200">{entry.data.price}</span>
+                )}
+              </span>
+            </div>
           </li>
         ))}
       </ul>
