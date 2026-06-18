@@ -185,7 +185,7 @@
   },
   "active": "2a0d08ccb72cbb16",
   "lastOpenFiles": [
-    "dist/client/_astro/index.VbpW7x34.css",
+    "dist/client/_astro/index.BS9o05No.css",
     "dist/client/index.html",
     "dist/client/terms/index.html",
     "dist/client/terms",
@@ -196,7 +196,6 @@
     "dist/client/menu/index.html",
     "dist/client/menu",
     "dist/client/contact/index.html",
-    "dist/client/hero3.jpg",
     "dist/client/hero/food/food4.png",
     "dist/client/hero/food/food3.png",
     "dist/client/hero/food/food2.png",
@@ -205,6 +204,7 @@
     "dist/client/hero/drink/drink3.png",
     "dist/client/hero/drink/drink2.png",
     "dist/client/hero/drink/drink.png",
+    "dist/client/hero3.jpg",
     "dist/client/favicon.svg"
   ]
 }

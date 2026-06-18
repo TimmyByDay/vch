@@ -38,6 +38,7 @@ collections:
       - { label: "Price", name: "price", widget: "string" }
       - { label: "Image", name: "image", widget: "image", required: false }
       - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Vegan", name: "vegan", widget: "boolean", default: false }
 
   - name: "food"
     label: "Food"
@@ -69,6 +70,7 @@ collections:
       - { label: "Price", name: "price", widget: "string" }
       - { label: "Image", name: "image", widget: "image", required: false }
       - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Vegan", name: "vegan", widget: "boolean", default: false }
 
   - name: "cakes"
     label: "Cakes"
@@ -82,6 +84,7 @@ collections:
       - { label: "Price", name: "price", widget: "string" }
       - { label: "Image", name: "image", widget: "image", required: false }
       - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Vegan", name: "vegan", widget: "boolean", default: false }
 
   - name: "specials"
     label: "Specials"

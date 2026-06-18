@@ -66,9 +66,9 @@ We have an admin panel (Decap CMS) and basic pages, but the site isn't productio
 
 ### Day 3: Homepage
 - [x] Hero section with tagline and CTA to /menu
-- [ ] Featured items section — query drinks/food where `featured: true`, render cards
-- [ ] Opening hours widget — query Business collection for hours
-- [ ] Seed 3–4 featured drinks/food items so the section isn't empty
+- [x] Featured items section — query drinks/food where `featured: true`, render cards with hover slide-out details
+- [x] Opening hours widget — query Business collection for hours
+- [x] Seed 4 featured drinks/food items so the section isn't empty
 
 ### Day 4: Contact Page
 - [ ] Add `email` entry to Business collection (via Decap CMS config and content schema)

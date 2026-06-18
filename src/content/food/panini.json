@@ -3,5 +3,6 @@
   "category": "panini",
   "description": "Warm panini filled with bacon and your choice of regular or vegan cheese.",
   "price": "£5.50",
-  "featured": true
+  "featured": true,
+  "vegan": false
 }

@@ -3,5 +3,6 @@
   "category": "jacket-potato",
   "description": "Fluffy jacket potato with a choice of toppings including bacon, cheese, and beans.",
   "price": "£5.00",
-  "featured": false
+  "featured": false,
+  "vegan": false
 }

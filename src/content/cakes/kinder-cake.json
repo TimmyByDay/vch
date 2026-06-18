@@ -1,7 +1,7 @@
 {
   "name": "Kinder Bueno Cake",
-  "category": "cakes",
   "description": "Rich chocolate cake with Kinder Bueno pieces throughout.",
   "price": "£3.50",
-  "featured": false
+  "featured": false,
+  "vegan": false
 }

@@ -13,6 +13,7 @@ const drinksCollection = defineCollection({
       price: z.string().optional(),
       image: image().optional(),
       featured: z.boolean().default(false),
+      vegan: z.boolean().default(false),
     }),
 });
 
@@ -29,6 +30,7 @@ const foodCollection = defineCollection({
       price: z.string().optional(),
       image: image().optional(),
       featured: z.boolean().default(false),
+      vegan: z.boolean().default(false),
     }),
 });
 
@@ -41,6 +43,7 @@ const cakesCollection = defineCollection({
       price: z.string().optional(),
       image: image().optional(),
       featured: z.boolean().default(false),
+      vegan: z.boolean().default(false),
     }),
 });
 

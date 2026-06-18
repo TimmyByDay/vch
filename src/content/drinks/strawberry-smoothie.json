@@ -3,5 +3,6 @@
   "category": "smoothies",
   "description": "Blended fresh strawberries, banana, and yogurt.",
   "price": "£3.50",
-  "featured": false
+  "featured": true,
+  "vegan": false
 }

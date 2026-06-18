@@ -2,11 +2,24 @@
 import { getCollection } from "astro:content";
 import PageLayout from "../layouts/PageLayout.astro";
 import FloatingSlideshow from "../components/FloatingSlideshow.svelte";
+import FeaturedCard from "../components/FeaturedCard.svelte";
 import { deliveryIcons } from "../data/delivery";
-import { toDeliveryLinks } from "../data/business";
+import { toDeliveryLinks, findBusiness, getBusinessEntries } from "../data/business";
 
 const deliveryEntries = await getCollection("delivery");
 const deliveryLinks = toDeliveryLinks(deliveryEntries);
+
+const drinkEntries = await getCollection("drinks");
+const foodEntries = await getCollection("food");
+const cakeEntries = await getCollection("cakes");
+const featuredItems = [
+  ...drinkEntries.filter((e) => e.data.featured).map((e) => ({ ...e.data, type: "drink" })),
+  ...foodEntries.filter((e) => e.data.featured).map((e) => ({ ...e.data, type: "food" })),
+  ...cakeEntries.filter((e) => e.data.featured).map((e) => ({ ...e.data, type: "cakes" })),
+];
+
+const businessEntries = await getBusinessEntries();
+const hours = findBusiness(businessEntries, "Hours");
 
 const drinkImages = [
   "/hero/drink/drink.png",
@@ -94,6 +107,35 @@ const foodImages = [
     </div>
     <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
   </section>
+
+  {featuredItems.length > 0 && (
+    <section class="py-16 px-4 max-w-6xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-bold text-center text-neutral-900 mb-10">
+        Featured
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {featuredItems.map((item) => (
+          <FeaturedCard
+            client:load
+            name={item.name}
+            description={item.description}
+            price={item.price}
+            vegan={item.vegan}
+            type={item.type}
+          />
+        ))}
+      </div>
+    </section>
+  )}
+
+  {hours && (
+    <section class="pb-16 px-4">
+      <div class="max-w-sm mx-auto bg-neutral-50 rounded-xl p-6 text-center">
+        <h2 class="text-lg font-semibold text-neutral-900 mb-2">Opening Hours</h2>
+        <p class="text-neutral-600 text-sm whitespace-pre-line">{hours}</p>
+      </div>
+    </section>
+  )}
 </PageLayout>
 
 <style>
