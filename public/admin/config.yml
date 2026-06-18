@@ -39,6 +39,8 @@ collections:
       - { label: "Image", name: "image", widget: "image", required: false }
       - { label: "Featured", name: "featured", widget: "boolean", default: false }
       - { label: "Vegan", name: "vegan", widget: "boolean", default: false }
+      - { label: "Special", name: "special", widget: "boolean", default: false }
+      - { label: "Special Price", name: "specialPrice", widget: "string", required: false }
 
   - name: "food"
     label: "Food"
@@ -71,6 +73,8 @@ collections:
       - { label: "Image", name: "image", widget: "image", required: false }
       - { label: "Featured", name: "featured", widget: "boolean", default: false }
       - { label: "Vegan", name: "vegan", widget: "boolean", default: false }
+      - { label: "Special", name: "special", widget: "boolean", default: false }
+      - { label: "Special Price", name: "specialPrice", widget: "string", required: false }
 
   - name: "cakes"
     label: "Cakes"
@@ -85,18 +89,8 @@ collections:
       - { label: "Image", name: "image", widget: "image", required: false }
       - { label: "Featured", name: "featured", widget: "boolean", default: false }
       - { label: "Vegan", name: "vegan", widget: "boolean", default: false }
-
-  - name: "specials"
-    label: "Specials"
-    folder: "src/content/specials"
-    create: true
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Image", name: "image", widget: "image", required: false }
-      - { label: "Start Date", name: "startDate", widget: "datetime" }
-      - { label: "End Date", name: "endDate", widget: "datetime", required: false }
-      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Special", name: "special", widget: "boolean", default: false }
+      - { label: "Special Price", name: "specialPrice", widget: "string", required: false }
 
   - name: "business"
     label: "Business"

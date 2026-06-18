@@ -6,6 +6,8 @@
     vegan = false,
     type = "drink",
     image = "",
+    special = false,
+    specialPrice = "",
   } = $props();
 
   const gradients = {
@@ -38,7 +40,12 @@
         <p class="text-sm text-neutral-600 leading-snug">{description}</p>
         <div class="flex items-center gap-3 pt-1">
           {#if price}
-            <span class="font-bold text-accent">{price}</span>
+            {#if special && specialPrice}
+              <span class="line-through text-red-400/60 text-sm">{price}</span>
+              <span class="font-bold text-accent">{specialPrice}</span>
+            {:else}
+              <span class="font-bold text-accent">{price}</span>
+            {/if}
           {/if}
           {#if vegan}
             <span class="inline-flex items-center gap-1 text-xs font-medium text-green-700 bg-green-100 rounded-full px-2.5 py-0.5">

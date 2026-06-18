@@ -4,5 +4,7 @@
   "description": "Smooth espresso with steamed milk. Available with plant milk.",
   "price": "£3.20",
   "featured": true,
-  "vegan": false
+  "vegan": false,
+  "special": true,
+  "specialPrice": "£2.50"
 }

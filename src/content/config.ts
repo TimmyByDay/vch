@@ -14,6 +14,8 @@ const drinksCollection = defineCollection({
       image: image().optional(),
       featured: z.boolean().default(false),
       vegan: z.boolean().default(false),
+      special: z.boolean().default(false),
+      specialPrice: z.string().optional(),
     }),
 });
 
@@ -31,6 +33,8 @@ const foodCollection = defineCollection({
       image: image().optional(),
       featured: z.boolean().default(false),
       vegan: z.boolean().default(false),
+      special: z.boolean().default(false),
+      specialPrice: z.string().optional(),
     }),
 });
 
@@ -44,18 +48,8 @@ const cakesCollection = defineCollection({
       image: image().optional(),
       featured: z.boolean().default(false),
       vegan: z.boolean().default(false),
-    }),
-});
-
-const specialsCollection = defineCollection({
-  type: "content",
-  schema: ({ image }) =>
-    z.object({
-      title: z.string(),
-      description: z.string(),
-      image: image().optional(),
-      startDate: z.date(),
-      endDate: z.date().optional(),
+      special: z.boolean().default(false),
+      specialPrice: z.string().optional(),
     }),
 });
 
@@ -81,7 +75,6 @@ export const collections = {
   drinks: drinksCollection,
   food: foodCollection,
   cakes: cakesCollection,
-  specials: specialsCollection,
   business: businessCollection,
   delivery: deliveryCollection,
 };

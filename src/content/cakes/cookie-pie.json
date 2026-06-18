@@ -2,6 +2,8 @@
   "name": "Cookie Pie",
   "description": "Our famous cookie pie — gooey, indulgent, and available in rotating flavours.",
   "price": "£3.50",
-  "featured": false,
-  "vegan": false
+  "featured": true,
+  "vegan": false,
+  "special": true,
+  "specialPrice": "£2.80"
 }

@@ -35,7 +35,16 @@ function formatCategory(cat: string) {
               {items.map((entry) => (
                 <li class="flex justify-between border-b border-neutral-800 pb-1">
                   <span>{entry.data.name}</span>
-                  <span class="text-neutral-200">{entry.data.price}</span>
+                  <span>
+                    {entry.data.special && entry.data.specialPrice ? (
+                      <>
+                        <span class="line-through text-red-400/60">{entry.data.price}</span>
+                        <span class="ml-2 font-semibold text-neutral-50">{entry.data.specialPrice}</span>
+                      </>
+                    ) : (
+                      <span class="text-neutral-200">{entry.data.price}</span>
+                    )}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -58,7 +67,16 @@ function formatCategory(cat: string) {
               {items.map((entry) => (
                 <li class="flex justify-between border-b border-neutral-800 pb-1">
                   <span>{entry.data.name}</span>
-                  <span class="text-neutral-200">{entry.data.price}</span>
+                  <span>
+                    {entry.data.special && entry.data.specialPrice ? (
+                      <>
+                        <span class="line-through text-red-400/60">{entry.data.price}</span>
+                        <span class="ml-2 font-semibold text-neutral-50">{entry.data.specialPrice}</span>
+                      </>
+                    ) : (
+                      <span class="text-neutral-200">{entry.data.price}</span>
+                    )}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -73,7 +91,16 @@ function formatCategory(cat: string) {
         {cakes.map((entry) => (
           <li class="flex justify-between border-b border-neutral-800 pb-1">
             <span>{entry.data.name}</span>
-            <span class="text-neutral-200">{entry.data.price}</span>
+            <span>
+              {entry.data.special && entry.data.specialPrice ? (
+                <>
+                  <span class="line-through text-red-400/60">{entry.data.price}</span>
+                  <span class="ml-2 font-semibold text-neutral-50">{entry.data.specialPrice}</span>
+                </>
+              ) : (
+                <span class="text-neutral-200">{entry.data.price}</span>
+              )}
+            </span>
           </li>
         ))}
       </ul>
