@@ -28,7 +28,7 @@
   </div>
 
   <div class="relative z-10 h-full grid grid-rows-[3fr_3fr] pt-4">
-    <div />
+    <div></div>
     <PocketFlap
       {name} {description} {price}
       {vegan} {special} {specialPrice} {label}
