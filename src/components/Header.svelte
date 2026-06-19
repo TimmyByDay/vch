@@ -74,7 +74,7 @@
                 onclick={() => orderOpen = false}
                 class="flex items-center gap-3 px-4 py-2.5 mx-2 rounded-lg text-sm text-neutral-900 hover:bg-neutral-50/30 transition-colors"
               >
-                <span class="w-5 h-5 flex-shrink-0 flex items-center justify-center icon-svg" style="color: {link.color}">
+                <span class="w-5 h-5 flex-shrink-0 flex items-center justify-center icon-svg" style:color={link.color}>
               {@html deliveryIcons[link.name]}
                 </span>
                 <span>{link.name}</span>
@@ -138,7 +138,7 @@
             onclick={() => open = false}
             class="flex items-center gap-3 text-lg text-neutral-900/80 hover:text-neutral-900 transition-colors"
           >
-            <span class="w-6 h-6 flex-shrink-0 flex items-center justify-center icon-svg" style="color: {link.color}">
+            <span class="w-6 h-6 flex-shrink-0 flex items-center justify-center icon-svg" style:color={link.color}>
               {@html deliveryIcons[link.name]}
             </span>
             <span>{link.name}</span>

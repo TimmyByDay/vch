@@ -16,6 +16,7 @@ const drinksCollection = defineCollection({
       vegan: z.boolean().default(false),
       special: z.boolean().default(false),
       specialPrice: z.string().optional(),
+      label: z.enum(["", "New", "Seasonal", "Limited"]).default(""),
     }),
 });
 
@@ -35,6 +36,7 @@ const foodCollection = defineCollection({
       vegan: z.boolean().default(false),
       special: z.boolean().default(false),
       specialPrice: z.string().optional(),
+      label: z.enum(["", "New", "Seasonal", "Limited"]).default(""),
     }),
 });
 
@@ -50,6 +52,7 @@ const cakesCollection = defineCollection({
       vegan: z.boolean().default(false),
       special: z.boolean().default(false),
       specialPrice: z.string().optional(),
+      label: z.enum(["", "New", "Seasonal", "Limited"]).default(""),
     }),
 });
 

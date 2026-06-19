@@ -14,8 +14,6 @@
   let currentIdx = $state(0);
   let timer;
 
-  let baseTransform = $derived(`rotateY(${rotationY}deg) rotate(${rotation}deg)`);
-
   function swap() {
     currentIdx = (currentIdx + 1) % images.length;
     timer = setTimeout(swap, 5000);
@@ -36,22 +34,36 @@
   </div>
 
   <span
-    class="absolute {positionClass} {sizeClass}"
-    style="perspective: 500px; transform-style: preserve-3d;"
+    class="absolute {positionClass} {sizeClass} float-wrap"
   >
     <span
-      class="block w-full h-auto grid grid-cols-1 grid-rows-1"
-      style="transform: {baseTransform}; transform-style: preserve-3d;"
+      class="block w-full h-auto grid grid-cols-1 grid-rows-1 float-inner"
+      style:--rot={rotation}
+      style:--rotY={rotationY}
     >
       {#key currentIdx}
         <img
           src={images[currentIdx]}
           alt=""
           class="col-start-1 row-start-1 w-full h-auto animate-float pointer-events-none"
-          style="animation-delay: {floatDelay};"
+          style:--delay={floatDelay}
           transition:fade={{ duration: 700 }}
         />
       {/key}
     </span>
   </span>
 {/if}
+
+<style>
+  .float-wrap {
+    perspective: 500px;
+    transform-style: preserve-3d;
+  }
+  .float-inner {
+    transform: rotateY(calc(var(--rotY) * 1deg)) rotate(calc(var(--rot) * 1deg));
+    transform-style: preserve-3d;
+  }
+  .animate-float {
+    animation-delay: var(--delay, 0ms);
+  }
+</style>

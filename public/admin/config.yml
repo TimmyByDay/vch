@@ -41,6 +41,14 @@ collections:
       - { label: "Vegan", name: "vegan", widget: "boolean", default: false }
       - { label: "Special", name: "special", widget: "boolean", default: false }
       - { label: "Special Price", name: "specialPrice", widget: "string", required: false }
+      - {
+          label: "Label",
+          name: "label",
+          widget: "select",
+          options: ["", "New", "Seasonal", "Limited"],
+          default: "",
+          required: false,
+        }
 
   - name: "food"
     label: "Food"
@@ -75,6 +83,14 @@ collections:
       - { label: "Vegan", name: "vegan", widget: "boolean", default: false }
       - { label: "Special", name: "special", widget: "boolean", default: false }
       - { label: "Special Price", name: "specialPrice", widget: "string", required: false }
+      - {
+          label: "Label",
+          name: "label",
+          widget: "select",
+          options: ["", "New", "Seasonal", "Limited"],
+          default: "",
+          required: false,
+        }
 
   - name: "cakes"
     label: "Cakes"
@@ -91,6 +107,14 @@ collections:
       - { label: "Vegan", name: "vegan", widget: "boolean", default: false }
       - { label: "Special", name: "special", widget: "boolean", default: false }
       - { label: "Special Price", name: "specialPrice", widget: "string", required: false }
+      - {
+          label: "Label",
+          name: "label",
+          widget: "select",
+          options: ["", "New", "Seasonal", "Limited"],
+          default: "",
+          required: false,
+        }
 
   - name: "business"
     label: "Business"

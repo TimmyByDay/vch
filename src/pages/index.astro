@@ -28,11 +28,12 @@ const foodImages = [
 
 let drinkImgIdx = 0;
 let foodImgIdx = 0;
-const featuredItems = [
-  ...drinkEntries.filter((e) => e.data.featured).map((e) => {
-    const image = drinkImages[drinkImgIdx++ % drinkImages.length];
-    return { ...e.data, type: "drink", image };
-  }),
+const brewingItems = drinkEntries.filter((e) => e.data.featured).map((e) => {
+  const image = drinkImages[drinkImgIdx++ % drinkImages.length];
+  return { ...e.data, type: "drink", image };
+}).slice(0, 3);
+
+const bakingItems = [
   ...foodEntries.filter((e) => e.data.featured).map((e) => {
     const image = foodImages[foodImgIdx++ % foodImages.length];
     return { ...e.data, type: "food", image };
@@ -41,7 +42,7 @@ const featuredItems = [
     const image = foodImages[foodImgIdx++ % foodImages.length];
     return { ...e.data, type: "cakes", image };
   }),
-];
+].slice(0, 3);
 
 const allSpecials = [
   ...drinkEntries.filter((e) => e.data.special).map((e) => ({ ...e.data, type: "drink" })),
@@ -93,10 +94,7 @@ const jsonLd = {
         <path d="M26.8838 528.274C193.934 689.816 480.051 637.218 594.397 451.983C708.742 266.748 543.953 2.22235 543.953 2.22235" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
       </svg>
     </div>
-    <div
-      class="absolute inset-0 bg-cover bg-center"
-      style="background-image: url('/hero3.jpg')"
-    />
+    <div class="absolute inset-0 hero-bg-image" />
     <div class="absolute inset-0 bg-white/97" />
     <div class="absolute inset-0 z-[5] pointer-events-none overflow-hidden">
       <FloatingSlideshow
@@ -145,14 +143,14 @@ const jsonLd = {
         </a>
       </div>
       <div class="mt-12 flex items-center justify-center gap-x-6 md:gap-x-10 text-sm text-neutral-500">
-        {deliveryLinks.map((link) => (
+        {deliveryLinks.map((link, i) => (
           <a
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center gap-2 font-semibold text-secondary hover:text-accent transition-colors"
           >
-            <span class="w-6 h-6 flex-shrink-0 flex items-center justify-center icon-svg" style={`color: ${link.color}`} set:html={deliveryIcons[link.name]} />
+            <span class={`delivery-icon-${i} w-6 h-6 flex-shrink-0 flex items-center justify-center icon-svg`} set:html={deliveryIcons[link.name]} />
             {link.name}
           </a>
         ))}
@@ -161,26 +159,49 @@ const jsonLd = {
     <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
   </section>
 
-  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
 
-  {featuredItems.length > 0 && (
+  {brewingItems.length > 0 && (
     <section class="py-16 px-4 max-w-6xl mx-auto">
       <h2 class="text-2xl md:text-3xl font-bold text-center text-neutral-900 mb-6 md:mb-10">
         What&apos;s Brewing
       </h2>
       <div class="flex flex-wrap justify-center gap-6">
-        {featuredItems.map((item) => (
-          <div class="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(25%-1.125rem)]">
+        {brewingItems.map((item) => (
+          <div class="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]">
             <FeaturedCard
               client:load
               name={item.name}
               description={item.description}
               price={item.price}
               vegan={item.vegan}
-              type={item.type}
-              image={item.image}
               special={item.special}
               specialPrice={item.specialPrice}
+              label={item.label}
+            />
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {bakingItems.length > 0 && (
+    <section class="pb-16 px-4 max-w-6xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-bold text-center text-neutral-900 mb-6 md:mb-10">
+        What&apos;s Baking
+      </h2>
+      <div class="flex flex-wrap justify-center gap-6">
+        {bakingItems.map((item) => (
+          <div class="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]">
+            <FeaturedCard
+              client:load
+              name={item.name}
+              description={item.description}
+              price={item.price}
+              vegan={item.vegan}
+              special={item.special}
+              specialPrice={item.specialPrice}
+              label={item.label}
             />
           </div>
         ))}
@@ -219,7 +240,7 @@ const jsonLd = {
       </h2>
       <div class="grid md:grid-cols-3 gap-4 md:gap-6">
         {testimonials.map((entry) => (
-          <div class="bg-neutral-50 rounded-xl p-5 md:p-6 flex flex-col">
+          <div class="bg-neutral-50/20 rounded-xl p-5 md:p-6 flex flex-col">
             <p class="text-neutral-600 text-sm leading-relaxed flex-1">&ldquo;{entry.data.quote}&rdquo;</p>
             <p class="text-neutral-900 font-semibold text-sm mt-3 md:mt-4">&mdash; {entry.data.author}</p>
           </div>
@@ -246,4 +267,11 @@ const jsonLd = {
   :global(.animate-float) {
     animation: float 7s ease-in-out infinite;
   }
+  .hero-bg-image {
+    background-image: url('/hero3.jpg');
+    background-size: cover;
+    background-position: center;
+  }
 </style>
+
+<style set:html={deliveryLinks.map((link, i) => `.delivery-icon-${i} { color: ${link.color}; }`).join('')} />
