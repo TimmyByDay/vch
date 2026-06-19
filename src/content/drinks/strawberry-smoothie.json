@@ -4,5 +4,7 @@
   "description": "Blended fresh strawberries, banana, and yogurt.",
   "price": "£3.50",
   "featured": true,
-  "vegan": false
+  "vegan": false,
+  "label": "Seasonal",
+  "special": false
 }
