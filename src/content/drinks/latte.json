@@ -1,10 +1,11 @@
 {
-  "name": "Latte",
-  "category": "coffee",
-  "description": "Smooth espresso with steamed milk. Available with plant milk.",
-  "price": "£3.20",
-  "featured": true,
   "vegan": false,
+  "price": "£3.20",
+  "name": "Latte",
+  "featured": true,
+  "specialPrice": "£2.50",
+  "label": "New",
   "special": true,
-  "specialPrice": "£2.50"
+  "description": "Smooth espresso with steamed milk. Available with plant milk.",
+  "category": "coffee"
 }
