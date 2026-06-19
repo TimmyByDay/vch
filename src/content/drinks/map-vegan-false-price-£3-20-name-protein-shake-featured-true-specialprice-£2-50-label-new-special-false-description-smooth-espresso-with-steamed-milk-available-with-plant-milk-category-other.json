@@ -1,0 +1,11 @@
+{
+  "vegan": false,
+  "price": "£3.20",
+  "name": "Protein Shake",
+  "featured": true,
+  "specialPrice": "£2.50",
+  "label": "New",
+  "special": false,
+  "description": "Smooth espresso with steamed milk. Available with plant milk.",
+  "category": "other"
+}
