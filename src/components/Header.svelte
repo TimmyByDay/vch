@@ -2,7 +2,7 @@
   import { deliveryIcons } from "../data/delivery";
   import { headerLinks } from "../data/navigation";
 
-  let { currentPath = "/", deliveryLinks = [] } = $props();
+  let { currentPath = "/", deliveryLinks = [], phone = "" } = $props();
 
   let cleanPath = $derived(currentPath.replace(/\/$/, "") || "/");
   let open = $state(false);
@@ -112,7 +112,7 @@
   onclick={handleBackdrop}
   role="presentation"
 >
-  <nav class="w-full h-full bg-neutral-50/95 backdrop-blur-sm flex flex-col items-center justify-center gap-6 md:gap-8">
+  <nav class="w-full h-full bg-white flex flex-col items-center justify-center gap-6 md:gap-8">
     {#each headerLinks as { href, label }}
       <a
         href={href}
@@ -146,5 +146,20 @@
         {/each}
       </div>
     </div>
+    {#if phone}
+      <div class="w-px h-8 bg-neutral-900/20"></div>
+      <div>
+        <a
+          href={`tel:${phone.replace(/\s/g, "")}`}
+          onclick={() => open = false}
+          class="flex items-center gap-3 text-lg text-neutral-900/80 hover:text-neutral-900 transition-colors"
+        >
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+          </svg>
+          <span>{phone}</span>
+        </a>
+      </div>
+    {/if}
   </nav>
 </div>

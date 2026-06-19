@@ -1,7 +1,6 @@
 <script>
   import BgSlot from "./BgSlot.svelte";
   import PocketFlap from "./PocketFlap.svelte";
-  import coffeeTest from "../assets/img/coffee-test.png";
 
   let {
     name = "",
@@ -11,6 +10,7 @@
     special = false,
     specialPrice = "",
     label = "",
+    image = "",
   } = $props();
 </script>
 
@@ -19,12 +19,16 @@
     <BgSlot class="w-full h-full" />
   </div>
 
-  <div class="absolute z-5 px-6">
-    <img
-      src={coffeeTest.src}
-      alt=""
-      class="w-full h-full object-cover rounded-2xl"
-    />
+  <div class="absolute z-5 inset-x-0 px-6 top-0 h-[60%]">
+    {#if image}
+      <img
+        src={image}
+        alt=""
+        class="w-full h-full object-cover rounded-2xl"
+      />
+    {:else}
+      <div class="w-full h-full rounded-2xl bg-gradient-to-br from-accent/10 via-secondary/5 to-accent/20"></div>
+    {/if}
   </div>
 
   <div class="relative z-10 h-full grid grid-rows-[3fr_3fr] pt-4">

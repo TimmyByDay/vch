@@ -1,7 +1,6 @@
 ---
 import { getCollection } from "astro:content";
 import PageLayout from "../layouts/PageLayout.astro";
-import FloatingSlideshow from "../components/FloatingSlideshow.svelte";
 import FeaturedCard from "../components/FeaturedCard.svelte";
 import { deliveryIcons } from "../data/delivery";
 import { toDeliveryLinks, findBusiness, getBusinessEntries } from "../data/business";
@@ -12,20 +11,6 @@ const deliveryLinks = toDeliveryLinks(deliveryEntries);
 const drinkEntries = await getCollection("drinks");
 const foodEntries = await getCollection("food");
 const cakeEntries = await getCollection("cakes");
-const drinkImages = [
-  "/hero/drink/drink.png",
-  "/hero/drink/drink2.png",
-  "/hero/drink/drink3.png",
-  "/hero/drink/drink4.png",
-];
-
-const foodImages = [
-  "/hero/food/food1.png",
-  "/hero/food/food2.png",
-  "/hero/food/food3.png",
-  "/hero/food/food4.png",
-];
-
 const brewingItems = drinkEntries.filter((e) => e.data.featured).map((e) => e.data).slice(0, 3);
 
 const bakingItems = [
@@ -85,26 +70,6 @@ const jsonLd = {
     </div>
     <div class="absolute inset-0 hero-bg-image" />
     <div class="absolute inset-0 bg-white/97" />
-    <div class="absolute inset-0 z-[5] pointer-events-none overflow-hidden">
-      <FloatingSlideshow
-        client:load
-        positionClass="left-1/2 -translate-x-43 md:-translate-x-72 top-[62%] md:top-[65%]"
-        sizeClass="w-20 md:w-24"
-        images={drinkImages}
-        rotation={-15}
-        rotationY={14}
-        floatDelay="0ms"
-      />
-      <FloatingSlideshow
-        client:load
-        positionClass="left-1/2 translate-x-22 md:translate-x-48 top-[62%] md:top-[65%]"
-        sizeClass="w-20 md:w-24"
-        images={foodImages}
-        rotation={15}
-        rotationY={-10}
-        floatDelay="150ms"
-      />
-    </div>
     <div class="relative z-10 text-center px-4 max-w-3xl mx-auto pt-24 md:pt-32">
       <span class="inline-block bg-accent/10 text-accent text-xs tracking-wider uppercase rounded-full px-4 py-1.5 mb-5">
         Vegan-friendly
@@ -144,6 +109,19 @@ const jsonLd = {
           </a>
         ))}
       </div>
+      {phone && (
+        <div class="mt-4 flex items-center justify-center text-sm text-neutral-500">
+          <a
+            href={`tel:${phone.replace(/\s/g, "")}`}
+            class="inline-flex items-center gap-2 font-semibold text-secondary hover:text-accent transition-colors"
+          >
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg>
+            {phone}
+          </a>
+        </div>
+      )}
     </div>
     <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
   </section>
@@ -167,6 +145,7 @@ const jsonLd = {
               special={item.special}
               specialPrice={item.specialPrice}
               label={item.label}
+              image={item.image}
             />
           </div>
         ))}
@@ -191,6 +170,7 @@ const jsonLd = {
               special={item.special}
               specialPrice={item.specialPrice}
               label={item.label}
+              image={item.image}
             />
           </div>
         ))}
@@ -249,13 +229,7 @@ const jsonLd = {
 </PageLayout>
 
 <style>
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-     50% { transform: translateY(-8px); }
-  }
-  :global(.animate-float) {
-    animation: float 7s ease-in-out infinite;
-  }
+
   .hero-bg-image {
     background-image: url('/hero3.jpg');
     background-size: cover;

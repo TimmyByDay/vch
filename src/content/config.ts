@@ -2,58 +2,55 @@ import { z, defineCollection } from "astro:content";
 
 const drinksCollection = defineCollection({
   type: "data",
-  schema: ({ image }) =>
-    z.object({
-      name: z.string(),
-      category: z.enum([
-        "coffee", "specialty-coffee", "tea", "hot-chocolate",
-        "cold-drinks", "smoothies", "soft-drinks", "other",
-      ]),
-      description: z.string(),
-      price: z.string().optional(),
-      image: image().optional(),
-      featured: z.boolean().default(false),
-      vegan: z.boolean().default(false),
-      special: z.boolean().default(false),
-      specialPrice: z.string().optional(),
-      label: z.enum(["", "New", "Seasonal", "Limited"]).default(""),
-    }),
+  schema: z.object({
+    name: z.string(),
+    category: z.enum([
+      "coffee", "specialty-coffee", "tea", "hot-chocolate",
+      "cold-drinks", "smoothies", "soft-drinks", "other",
+    ]),
+    description: z.string(),
+    price: z.string().optional(),
+    image: z.string().optional(),
+    featured: z.boolean().default(false),
+    vegan: z.boolean().default(false),
+    special: z.boolean().default(false),
+    specialPrice: z.string().optional(),
+    label: z.enum(["", "New", "Seasonal", "Limited"]).default(""),
+  }),
 });
 
 const foodCollection = defineCollection({
   type: "data",
-  schema: ({ image }) =>
-    z.object({
-      name: z.string(),
-      category: z.enum([
-        "panini", "baguette", "jacket-potato", "toasties",
-        "sandwiches", "wraps", "soups", "breakfast", "sides", "other",
-      ]),
-      description: z.string(),
-      price: z.string().optional(),
-      image: image().optional(),
-      featured: z.boolean().default(false),
-      vegan: z.boolean().default(false),
-      special: z.boolean().default(false),
-      specialPrice: z.string().optional(),
-      label: z.enum(["", "New", "Seasonal", "Limited"]).default(""),
-    }),
+  schema: z.object({
+    name: z.string(),
+    category: z.enum([
+      "panini", "baguette", "jacket-potato", "toasties",
+      "sandwiches", "wraps", "soups", "breakfast", "sides", "other",
+    ]),
+    description: z.string(),
+    price: z.string().optional(),
+    image: z.string().optional(),
+    featured: z.boolean().default(false),
+    vegan: z.boolean().default(false),
+    special: z.boolean().default(false),
+    specialPrice: z.string().optional(),
+    label: z.enum(["", "New", "Seasonal", "Limited"]).default(""),
+  }),
 });
 
 const cakesCollection = defineCollection({
   type: "data",
-  schema: ({ image }) =>
-    z.object({
-      name: z.string(),
-      description: z.string(),
-      price: z.string().optional(),
-      image: image().optional(),
-      featured: z.boolean().default(false),
-      vegan: z.boolean().default(false),
-      special: z.boolean().default(false),
-      specialPrice: z.string().optional(),
-      label: z.enum(["", "New", "Seasonal", "Limited"]).default(""),
-    }),
+  schema: z.object({
+    name: z.string(),
+    description: z.string(),
+    price: z.string().optional(),
+    image: z.string().optional(),
+    featured: z.boolean().default(false),
+    vegan: z.boolean().default(false),
+    special: z.boolean().default(false),
+    specialPrice: z.string().optional(),
+    label: z.enum(["", "New", "Seasonal", "Limited"]).default(""),
+  }),
 });
 
 const businessCollection = defineCollection({

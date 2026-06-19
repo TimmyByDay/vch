@@ -52,7 +52,7 @@ const fullImage = image.startsWith("http") ? image : `${siteUrl}${image}`;
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   <body class="text-neutral-50">
-    <Header currentPath={Astro.url.pathname} deliveryLinks={deliveryLinks} client:load />
+    <Header currentPath={Astro.url.pathname} deliveryLinks={deliveryLinks} phone={phone} client:load />
     <slot />
     <Footer {address} {phone} {email} {hours} {instagram} {facebook} {deliveryLinks} />
   </body>
