@@ -14,7 +14,7 @@
   let currentIdx = $state(0);
   let timer;
 
-  const baseTransform = `rotateY(${rotationY}deg) rotate(${rotation}deg)`;
+  let baseTransform = $derived(`rotateY(${rotationY}deg) rotate(${rotation}deg)`);
 
   function swap() {
     currentIdx = (currentIdx + 1) % images.length;

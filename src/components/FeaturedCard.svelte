@@ -16,7 +16,7 @@
     cakes: "linear-gradient(135deg, #77574B 0%, #4D352E 100%)",
   };
 
-  const gradient = gradients[type] || gradients.drink;
+  let gradient = $derived(gradients[type] || gradients.drink);
 </script>
 
 <div class="group cursor-pointer rounded-xl overflow-hidden h-[300px] sm:h-[290px] lg:h-[270px] flex flex-col">
@@ -25,7 +25,7 @@
     style="background: {image ? `url(${image}) center/cover` : gradient}"
   >
     {#if image}
-      <div class="absolute inset-0 bg-black/30" />
+      <div class="absolute inset-0 bg-black/30"></div>
     {/if}
     <span class="relative z-10 text-neutral-50 text-xl md:text-2xl font-bold text-center drop-shadow-md">
       {name}

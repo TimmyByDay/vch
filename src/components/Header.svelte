@@ -4,7 +4,7 @@
 
   let { currentPath = "/", deliveryLinks = [] } = $props();
 
-  const cleanPath = currentPath.replace(/\/$/, "") || "/";
+  let cleanPath = $derived(currentPath.replace(/\/$/, "") || "/");
   let open = $state(false);
   let orderOpen = $state(false);
 
@@ -101,6 +101,7 @@
           </svg>
         {/if}
       </button>
+    </div>
     </div>
   </div>
 </header>
