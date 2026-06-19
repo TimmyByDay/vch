@@ -26,28 +26,17 @@ const foodImages = [
   "/hero/food/food4.png",
 ];
 
-let drinkImgIdx = 0;
-let foodImgIdx = 0;
-const brewingItems = drinkEntries.filter((e) => e.data.featured).map((e) => {
-  const image = drinkImages[drinkImgIdx++ % drinkImages.length];
-  return { ...e.data, type: "drink", image };
-}).slice(0, 3);
+const brewingItems = drinkEntries.filter((e) => e.data.featured).map((e) => e.data).slice(0, 3);
 
 const bakingItems = [
-  ...foodEntries.filter((e) => e.data.featured).map((e) => {
-    const image = foodImages[foodImgIdx++ % foodImages.length];
-    return { ...e.data, type: "food", image };
-  }),
-  ...cakeEntries.filter((e) => e.data.featured).map((e) => {
-    const image = foodImages[foodImgIdx++ % foodImages.length];
-    return { ...e.data, type: "cakes", image };
-  }),
+  ...foodEntries.filter((e) => e.data.featured).map((e) => e.data),
+  ...cakeEntries.filter((e) => e.data.featured).map((e) => e.data),
 ].slice(0, 3);
 
 const allSpecials = [
-  ...drinkEntries.filter((e) => e.data.special).map((e) => ({ ...e.data, type: "drink" })),
-  ...foodEntries.filter((e) => e.data.special).map((e) => ({ ...e.data, type: "food" })),
-  ...cakeEntries.filter((e) => e.data.special).map((e) => ({ ...e.data, type: "cakes" })),
+  ...drinkEntries.filter((e) => e.data.special).map((e) => ({ ...e.data })),
+  ...foodEntries.filter((e) => e.data.special).map((e) => ({ ...e.data })),
+  ...cakeEntries.filter((e) => e.data.special).map((e) => ({ ...e.data })),
 ];
 
 const businessEntries = await getBusinessEntries();
